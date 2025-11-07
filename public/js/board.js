@@ -726,8 +726,12 @@ function renderManagementModal() {
         teamsList.appendChild(item);
     });
     
+    // Remove old event listeners by cloning and replacing (prevents duplicate listeners)
+    const teamsListClone = teamsList.cloneNode(true);
+    teamsList.parentNode.replaceChild(teamsListClone, teamsList);
+    
     // Use event delegation for team remove buttons
-    teamsList.addEventListener('click', (e) => {
+    teamsListClone.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-team-btn')) {
             e.preventDefault();
             const teamIdRaw = e.target.dataset.teamId;
@@ -748,8 +752,12 @@ function renderManagementModal() {
         sprintsList.appendChild(item);
     });
     
+    // Remove old event listeners by cloning and replacing (prevents duplicate listeners)
+    const sprintsListClone = sprintsList.cloneNode(true);
+    sprintsList.parentNode.replaceChild(sprintsListClone, sprintsList);
+    
     // Use event delegation for sprint remove buttons
-    sprintsList.addEventListener('click', (e) => {
+    sprintsListClone.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-sprint-btn')) {
             e.preventDefault();
             const sprintId = parseInt(e.target.dataset.sprintId);
