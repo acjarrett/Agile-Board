@@ -393,6 +393,77 @@ io.on('connection', (socket) => {
       }
     }
   });
+
+  // Import entire board state for a session
+  socket.on('import-board-data', (payload) => {
+    try {
+      const sid = socket.sessionId || (payload && payload.sessionId);
+      if (!sid) {
+        socket.emit('error', { message: 'Missing sessionId for import' });
+        return;
+      }
+      const session = sessionData.sessions[sid];
+      if (!session) {
+        socket.emit('error', { message: 'Session not found' });
+        return;
+      }
+      const incoming = payload && payload.boardData;
+      if (!incoming || typeof incoming !== 'object') {
+        socket.emit('error', { message: 'Invalid import payload' });
+        return;
+      }
+      // Basic schema validation
+      if (!Array.isArray(incoming.teams) || !Array.isArray(incoming.sprints) || !Array.isArray(incoming.stickies) || !Array.isArray(incoming.dependencies)) {
+        socket.emit('error', { message: 'Import JSON must include teams, sprints, stickies, dependencies arrays' });
+        return;
+      }
+
+      // Sanitize and normalize
+      const teams = incoming.teams.map(t => ({ id: Number(t.id), name: String(t.name || '').trim() })).filter(t => !!t.name && !isNaN(t.id));
+      const sprints = incoming.sprints.map(s => ({ id: Number(s.id), name: String(s.name || '').trim() })).filter(s => !!s.name && !isNaN(s.id));
+
+      const validTeamIds = new Set(teams.map(t => t.id));
+      const validSprintIds = new Set(sprints.map(s => s.id));
+
+      const stickies = incoming.stickies
+        .map(s => ({
+          id: Number(s.id),
+          title: String(s.title || '').trim(),
+          type: s.type ? String(s.type) : 'Feature',
+          team: Number(s.team),
+          sprint: Number(s.sprint),
+          description: s.description ? String(s.description) : ''
+        }))
+        .filter(s => !!s.title && !isNaN(s.id) && validTeamIds.has(s.team) && validSprintIds.has(s.sprint));
+
+      // Drop dependencies referencing missing stickies; ensure fields
+      const stickyIds = new Set(stickies.map(s => s.id));
+      const dependencies = incoming.dependencies
+        .map(d => ({
+          from: Number(d.from),
+          to: Number(d.to),
+          fromDot: d.fromDot || 'start',
+          toDot: d.toDot || 'end',
+          relationship: d.relationship || 'depends on',
+          additionalInfo: d.additionalInfo || ''
+        }))
+        .filter(d => stickyIds.has(d.from) && stickyIds.has(d.to));
+
+      // Compute nextStickyId
+      const maxId = stickies.reduce((m, s) => Math.max(m, s.id), 0);
+      const nextStickyId = Number.isFinite(maxId) ? maxId + 1 : 1;
+
+      session.boardData = { teams, sprints, stickies, dependencies, nextStickyId };
+      saveSessions(sessionData);
+
+      // Broadcast full board data to everyone in the session (including importer)
+      io.to(sid).emit('board-data', session.boardData);
+      // Notify importer
+      socket.emit('import-complete', { message: 'Board imported successfully' });
+    } catch (e) {
+      socket.emit('error', { message: 'Import failed: ' + (e.message || String(e)) });
+    }
+  });
   
   // Handle team management
   socket.on('add-team', (data) => {

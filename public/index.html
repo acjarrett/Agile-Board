@@ -783,6 +783,9 @@
             <div class="management-controls">
                 <button class="btn btn-secondary" onclick="addTeam()">+ Team</button>
                 <button class="btn btn-secondary" onclick="addSprint()">+ Iteration</button>
+                <button class="btn btn-secondary" onclick="exportBoard()">⬇️ Export</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFileInput').click()">⬆️ Import</button>
+                <input type="file" id="importFileInput" accept="application/json" style="display:none" onchange="handleImportFile(this.files && this.files[0])" />
             </div>
             
             <h3>Teams</h3>
@@ -1111,6 +1114,10 @@
             
             socket.on('error', (error) => {
                 alert('Error: ' + error.message);
+            });
+
+            socket.on('import-complete', (info) => {
+                alert(info && info.message ? info.message : 'Board import completed');
             });
         }
 

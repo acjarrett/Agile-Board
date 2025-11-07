@@ -921,4 +921,54 @@ window.addEventListener('click', (e) => {
     }
 });
 
+// -------- Import / Export Board State (Session) --------
+function exportBoard() {
+    try {
+        const payload = JSON.stringify(boardData, null, 2);
+        const blob = new Blob([payload], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const code = (sessionCode || 'board').toLowerCase();
+        a.href = url;
+        a.download = `agile-board-${code}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    } catch (e) {
+        alert('Export failed: ' + (e.message || e));
+    }
+}
+
+function handleImportFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const parsed = JSON.parse(e.target.result);
+            if (!parsed || typeof parsed !== 'object') {
+                alert('Invalid JSON file');
+                return;
+            }
+            if (!confirm('Importing will replace the current board (teams, sprints, stickies, dependencies). Continue?')) {
+                return;
+            }
+            // Basic schema validation
+            const valid = Array.isArray(parsed.teams) && Array.isArray(parsed.sprints) && Array.isArray(parsed.stickies) && Array.isArray(parsed.dependencies);
+            if (!valid) {
+                alert('JSON missing required arrays (teams, sprints, stickies, dependencies).');
+                return;
+            }
+            // Emit to server for session-wide replacement
+            socket.emit('import-board-data', { sessionId, boardData: parsed });
+        } catch (err) {
+            alert('Failed to parse JSON: ' + (err.message || err));
+        }
+    };
+    reader.readAsText(file);
+    // reset input so same file can be chosen again if needed
+    const inputEl = document.getElementById('importFileInput');
+    if (inputEl) inputEl.value = '';
+}
+
 
