@@ -19,6 +19,13 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  // Allow Azure DevOps domains to embed
+  res.setHeader('X-Frame-Options', 'ALLOWALL'); // or remove it entirely
+  // Modern CSP approach:
+  res.setHeader('Content-Security-Policy', "frame-ancestors 'self' https://dev.azure.com https://*.vsrm.visualstudio.com;");
+  next();
+});
 
 // Data storage
 const DATA_FILE = path.join(__dirname, 'data', 'board-data.json');
@@ -32,12 +39,15 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 // Initialize default board data
 const defaultBoardData = {
   teams: [
-    { id: 1, name: 'IT Devs'},
-    { id: 2, name: 'R&G'},
-    { id: 3, name: 'People Ops'},
-    { id: 4, name: 'Payments'},
-    { id: 5, name: 'Mortgage'},
-    { id: 6, name: 'Marketing'}
+    { id: 1, name: 'R&G'},
+    { id: 2, name: 'Inclusive Banking'},
+    { id: 3, name: 'Mortgage'},
+    { id: 4, name: 'Consumer Lending'},
+    { id: 5, name: 'Payments'},
+    { id: 6, name: 'Marketing'},
+    { id: 7, name: 'IT Development'},
+    { id: 8, name: 'People Ops'}, 
+    { id: 9, name: 'Risk/Legal'}           
   ],
   sprints: [
     { id: 1, name: 'Iteration 1' },

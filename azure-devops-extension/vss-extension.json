@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
   "id": "agile-board-extension",
-  "publisher": "your-publisher-id",
+  "publisher": "TTCUTech",
   "version": "0.1.0",
-  "name": "Agile Board Planning Hub",
-  "description": "Custom planning and dependency visualization hub similar to Estimate, embedded under Azure Boards.",
+  "name": "Agile Board",
+  "description": "SAFe PI Planning Board",
   "public": false,
   "tags": ["boards", "planning", "agile", "dependencies"],
   "categories": ["Azure Boards"],
