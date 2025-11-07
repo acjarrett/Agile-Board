@@ -32,12 +32,12 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 // Initialize default board data
 const defaultBoardData = {
   teams: [
-    { id: 'dev', name: 'IT Devs', color: 'team-dev' },
-    { id: 'design', name: 'R&G', color: 'team-design' },
-    { id: 'qa', name: 'People Ops', color: 'team-qa' },
-    { id: 'devops', name: 'Payments', color: 'team-devops' },
-    { id: 'product', name: 'Mortgage', color: 'team-product' },
-    { id: 'marketing', name: 'Marketing', color: 'team-marketing' }
+    { id: 1, name: 'IT Devs'},
+    { id: 2, name: 'R&G'},
+    { id: 3, name: 'People Ops'},
+    { id: 4, name: 'Payments'},
+    { id: 5, name: 'Mortgage'},
+    { id: 6, name: 'Marketing'}
   ],
   sprints: [
     { id: 1, name: 'Iteration 1' },
@@ -48,18 +48,18 @@ const defaultBoardData = {
     { id: 6, name: 'Iteration 6' }
   ],
   stickies: [
-    { id: 1, title: "User Authentication System", type: "Feature", team: "dev", sprint: 1, description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
-    { id: 2, title: "Database Performance Optimization", type: "Feature", team: "dev", sprint: 1, description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
-    { id: 3, title: "Mobile App UI Redesign", type: "Feature", team: "design", sprint: 2, description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
-    { id: 4, title: "Payment Gateway Integration", type: "Milestone", team: "dev", sprint: 3, description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
-    { id: 5, title: "Automated Testing Suite", type: "Feature", team: "qa", sprint: 3, description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
-    { id: 6, title: "CI/CD Pipeline Setup", type: "Milestone", team: "devops", sprint: 2, description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
-    { id: 7, title: "Employee Onboarding Portal", type: "Feature", team: "product", sprint: 1, description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
-    { id: 8, title: "Customer Support Chat", type: "Feature", team: "product", sprint: 4, description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
-    { id: 9, title: "Load Testing & Performance", type: "Major Dependency", team: "qa", sprint: 4, description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
-    { id: 10, title: "Security Vulnerability Assessment", type: "Major Dependency", team: "devops", sprint: 5, description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
-    { id: 11, title: "User Feedback Dashboard", type: "Feature", team: "product", sprint: 3, description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
-    { id: 12, title: "Data Analytics Platform", type: "Feature", team: "dev", sprint: 6, description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
+    { id: 1, title: "User Authentication System", type: "Feature", team: 1, sprint: 1, description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
+    { id: 2, title: "Database Performance Optimization", type: "Feature", team: 1, sprint: 1, description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
+    { id: 3, title: "Mobile App UI Redesign", type: "Feature", team: 2, sprint: 2, description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
+    { id: 4, title: "Payment Gateway Integration", type: "Milestone", team: 1, sprint: 3, description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
+    { id: 5, title: "Automated Testing Suite", type: "Feature", team: 3, sprint: 3, description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
+    { id: 6, title: "CI/CD Pipeline Setup", type: "Milestone", team: 4, sprint: 2, description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
+    { id: 7, title: "Employee Onboarding Portal", type: "Feature", team: 4, sprint: 1, description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
+    { id: 8, title: "Customer Support Chat", type: "Feature", team: 4, sprint: 4, description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
+    { id: 9, title: "Load Testing & Performance", type: "Major Dependency", team: 5, sprint: 4, description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
+    { id: 10, title: "Security Vulnerability Assessment", type: "Major Dependency", team: 3, sprint: 5, description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
+    { id: 11, title: "User Feedback Dashboard", type: "Feature", team: 5, sprint: 3, description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
+    { id: 12, title: "Data Analytics Platform", type: "Feature", team: 1, sprint: 6, description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
   ],
   dependencies: [
   ],
@@ -139,7 +139,9 @@ function loadSessions() {
 
 function saveData(data) {
   try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+    fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2), (err) => {
+      if (err) console.error('Error saving board data:', err.message);
+    });
   } catch (error) {
     console.error('Error saving board data:', error.message);
   }
@@ -154,8 +156,10 @@ function saveSessions(sessions) {
       }
       return value;
     }));
-    
-    fs.writeFileSync(SESSIONS_FILE, JSON.stringify(sessionsToSave, null, 2));
+
+    fs.writeFile(SESSIONS_FILE, JSON.stringify(sessionsToSave, null, 2), (err) => {
+      if (err) console.error('Error saving sessions:', err.message);
+    });
   } catch (error) {
     console.error('Error saving sessions:', error.message);
   }
@@ -310,6 +314,8 @@ io.on('connection', (socket) => {
         const newSticky = {
           id: session.boardData.nextStickyId++,
           ...payload,
+          team: Number(payload.team), // Ensure team is numeric
+          sprint: Number(payload.sprint), // Ensure sprint is numeric
           description: payload.description || ''
         };
         session.boardData.stickies.push(newSticky);
@@ -329,8 +335,8 @@ io.on('connection', (socket) => {
       if (session) {
         const stickyIndex = session.boardData.stickies.findIndex(s => s.id === data.stickyId);
         if (stickyIndex !== -1) {
-          session.boardData.stickies[stickyIndex].team = data.team;
-          session.boardData.stickies[stickyIndex].sprint = data.sprint;
+          session.boardData.stickies[stickyIndex].team = Number(data.team);
+          session.boardData.stickies[stickyIndex].sprint = Number(data.sprint);
           saveSessions(sessionData);
           
           // Broadcast to all users in session
@@ -341,36 +347,104 @@ io.on('connection', (socket) => {
   });
   
   // Handle dependency updates
-  socket.on('update-dependencies', (dependencies) => {
-    if (socket.sessionId) {
-      const session = sessionData.sessions[socket.sessionId];
+  socket.on('update-dependencies', (payload) => {
+    // Support two payload shapes: (dependenciesArray) or ({ sessionId, dependencies })
+    let deps = null;
+    let targetSessionId = socket.sessionId;
+    if (Array.isArray(payload)) {
+      deps = payload;
+    } else if (payload && payload.dependencies) {
+      deps = payload.dependencies;
+      if (!targetSessionId && payload.sessionId) targetSessionId = payload.sessionId;
+    } else {
+      // Invalid payload
+      return;
+    }
+
+    if (targetSessionId) {
+      const session = sessionData.sessions[targetSessionId];
       if (session) {
-        session.boardData.dependencies = dependencies;
+        session.boardData.dependencies = deps;
         saveSessions(sessionData);
-        
-        // Broadcast to all users in session
-        socket.to(socket.sessionId).emit('dependencies-updated', dependencies);
+
+        // Broadcast to all other users in session
+        socket.to(targetSessionId).emit('dependencies-updated', deps);
       }
     }
   });
   
   // Handle team management
-  socket.on('add-team', (team) => {
+  socket.on('add-team', (data) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
-      if (session) {
-        // Check for duplicates
-        if (!session.boardData.teams.some(t => t.id === team.id)) {
-          session.boardData.teams.push(team);
-          saveSessions(sessionData);
-          
-          // Broadcast to all users in session
-          io.to(socket.sessionId).emit('team-added', team);
+      if (session && data && data.name) {
+        // Ensure unique ID
+        const newId = Math.max(...session.boardData.teams.map(s => s.id), 0) + 1;    
+        const newTeam = {
+          id: newId,
+          name: data.name
+        };
+        
+        console.log('Server creating new team:', newTeam);
+
+        // Check for duplicate names
+        const duplicate = session.boardData.teams.find(s => s.name === data.name);
+        if (duplicate) {
+          console.log('Duplicate team name found:', duplicate);
+          socket.emit('error', { message: 'Team with this name already exists' });
+          return;
         }
+          
+        session.boardData.teams.push(newTeam);
+        saveSessions(sessionData);
+        
+        // Emit to everyone including sender
+        io.to(socket.sessionId).emit('team-added', newTeam);
+      } else {
+        console.log('Invalid team data:', data);
+      } 
+    } else {
+        console.log('No session ID for socket:', socket.id);
       }
-    }
   });
   
+  // Handle sprint management
+  socket.on('add-sprint', (data) => {
+    
+    if (socket.sessionId) {
+      const session = sessionData.sessions[socket.sessionId];
+      if (session && data && data.name) {
+        // Ensure unique ID
+        const newId = Math.max(...session.boardData.sprints.map(s => s.id), 0) + 1;
+        const newSprint = {
+          id: newId,
+          name: data.name
+        };
+
+        console.log('Server creating new sprint:', newSprint);
+
+        // Check for duplicate names
+        const duplicate = session.boardData.sprints.find(s => s.name === data.name);
+        if (duplicate) {
+          console.log('Duplicate sprint name found:', duplicate);
+          socket.emit('error', { message: 'Sprint with this name already exists' });
+          return;
+        }
+
+        session.boardData.sprints.push(newSprint);
+        saveSessions(sessionData);
+        
+        console.log('Server broadcasting sprint-added to session', socket.sessionId);
+        // Emit to everyone including sender
+        io.to(socket.sessionId).emit('sprint-added', newSprint);
+      } else {
+        console.log('Invalid sprint data:', data);
+      }
+    } else {
+      console.log('No session ID for socket:', socket.id);
+    }
+  });
+
   socket.on('remove-team', (teamId) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
@@ -391,27 +465,6 @@ io.on('connection', (socket) => {
         
         // Broadcast to all users in session
         io.to(socket.sessionId).emit('team-removed', teamId);
-      }
-    }
-  });
-  
-  // Handle sprint management
-  socket.on('add-sprint', (sprint) => {
-    if (socket.sessionId) {
-      const session = sessionData.sessions[socket.sessionId];
-      if (session) {
-        // Ensure unique ID
-        const newId = Math.max(...session.boardData.sprints.map(s => s.id), 0) + 1;
-        const newSprint = {
-          ...sprint,
-          id: newId
-        };
-
-        session.boardData.sprints.push(newSprint);
-        saveSessions(sessionData);
-        
-        // Broadcast to all users in session
-        io.to(socket.sessionId).emit('sprint-added', newSprint);
       }
     }
   });

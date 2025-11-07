@@ -206,7 +206,7 @@
         }
 
         .header-cell.corner {
-            background: #1a202c;
+            background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
             font-size: 12px;
             text-transform: uppercase;
             color: #a0aec0;
@@ -342,11 +342,6 @@
             justify-content: center;
         }
 
-        .card-title:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        }
-
         .card-meta {
             display: flex;
             justify-content: space-between;
@@ -420,6 +415,21 @@
             stroke-width: 4;
             opacity: 1;
         }
+
+            svg.dependency-layer path.temp-dependency {
+                stroke-dasharray: 5,5;
+                pointer-events: none;
+            }
+
+            .dependency-dot {
+                cursor: grab;
+            }
+
+            .dependency-dot.dragging {
+                cursor: grabbing;
+                transform: scale(1.5);
+                background: #b91c1c;
+            }
 
         .modal {
             display: none;
@@ -591,28 +601,11 @@
             border-color: #667eea;
         }
 
-        .team-dev { background: linear-gradient(135deg, #667eea, #5a5fd8); }
-        .team-design { background: linear-gradient(135deg, #f687b3, #d53f8c); }
-        .team-qa { background: linear-gradient(135deg, #48bb78, #38a169); }
-        .team-devops { background: linear-gradient(135deg, #ed8936, #dd6b20); }
-        .team-product { background: linear-gradient(135deg, #9f7aea, #805ad5); }
-        .team-marketing { background: linear-gradient(135deg, #4299e1, #3182ce); }
-
         /* Sticky type styles */
         .sticky-Feature { background: linear-gradient(135deg, #4299e1, #3182ce); }
         .sticky-Milestone { background: linear-gradient(135deg, #ed8936, #dd6b20); }
         .sticky-Major-Dependency { background: linear-gradient(135deg, #f56565, #c53030); }
 
-        .status-indicator {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #48bb78;
-            animation: pulse 2s infinite;
-        }
 
         .online-indicator {
             position: absolute;
@@ -816,29 +809,70 @@
             nextStickyId: 1
         };
         let dependencyMode = false;
+        let showDependencies = false;
         let selectedCardForDependency = null;
         let currentEditingSticky = null;
         let currentEditingDependency = null;
 
         // Socket initialization - connect immediately when page loads
         function initializeSocketEarly() {
-            socket = io();
-            
-            socket.on('connect', () => {
-                console.log('Connected to server');
-            });
-            
-            socket.on('global-participant-count', (count) => {
-                document.getElementById('participantCount').textContent = count;
-            });
-            
-            socket.on('disconnect', () => {
-                console.log('Disconnected from server');
-            });
+            if (!socket) {
+                socket = io({
+                    reconnection: true,
+                    reconnectionDelay: 1000,
+                    reconnectionDelayMax: 5000,
+                    reconnectionAttempts: 99999
+                });
+                
+                setupGlobalSocketHandlers();
+                
+                socket.on('global-participant-count', (count) => {
+                    document.getElementById('participantCount').textContent = count;
+                });
+            }
         }
 
         // Initialize socket connection as soon as page loads
         window.addEventListener('load', initializeSocketEarly);
+
+        // Track reconnection attempts
+        let reconnectCount = 0;
+        
+        // Global socket event handlers
+        function setupGlobalSocketHandlers() {
+            if (!socket) return;
+            
+            socket.on('connect', () => {
+                console.log('Connected to server');
+                document.getElementById('onlineIndicator').classList.add('active');
+                reconnectCount = 0;
+                
+                // If we have an existing session, rejoin it
+                if (sessionId) {
+                    console.log('Rejoining session after reconnect:', sessionId);
+                    socket.emit('join-session', sessionId);
+                }
+            });
+            
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server');
+                document.getElementById('onlineIndicator').classList.remove('active');
+                reconnectCount++;
+                console.log(`Disconnect #${reconnectCount} - Will attempt reconnection...`);
+            });
+            
+            socket.on('connect_error', (error) => {
+                console.log('Connection error:', error);
+            });
+            
+            socket.on('reconnect', (attemptNumber) => {
+                console.log('Successfully reconnected after', attemptNumber, 'attempts');
+            });
+            
+            socket.on('reconnect_attempt', () => {
+                console.log('Attempting to reconnect...');
+            });
+        }
 
         // Authentication functions
         async function createSession() {
@@ -911,24 +945,53 @@
         function initializeSocket() {
             // If socket is already initialized, just join the session
             if (!socket) {
-                socket = io();
+                socket = io({
+                    reconnection: true,
+                    reconnectionDelay: 1000,
+                    reconnectionDelayMax: 5000,
+                    reconnectionAttempts: 99999
+                });
             }
             
             socket.emit('join-session', sessionId);
             
             socket.on('board-data', (data) => {
-                boardData = data;
+                // Server may send either { boardData: {...} } or the boardData object directly.
+                const payload = data && data.boardData ? data.boardData : data || {};
+                console.info('socket: board-data received — stickies=', (payload.stickies || []).length, 'dependencies=', (payload.dependencies || []).length);
+                boardData = payload;
                 renderBoard();
+
+                // After a short delay, verify whether dependencies can be matched to DOM cards
+                setTimeout(() => {
+                    try { window.verifyDependenciesOnLoad && window.verifyDependenciesOnLoad(); } catch (e) { /* ignore */ }
+                }, 120);
             });
             
             socket.on('sticky-created', (sticky) => {
                 // Remove any optimistic temp sticky that matches this server sticky (match by title/team/sprint/description)
-                boardData.stickies = boardData.stickies.filter(s => {
-                    if (s.pending) {
-                        return !(s.title === sticky.title && String(s.team) === String(sticky.team) && Number(s.sprint) === Number(sticky.sprint) && s.description === sticky.description);
+                // Find any pending temp sticky that corresponds to this new server sticky
+                const tempIndex = boardData.stickies.findIndex(s => s.pending && s.title === sticky.title && Number(s.team) === Number(sticky.team) && Number(s.sprint) === Number(sticky.sprint) && s.description === sticky.description);
+                if (tempIndex !== -1) {
+                    const tempId = boardData.stickies[tempIndex].id;
+                    // Remove temp sticky
+                    boardData.stickies.splice(tempIndex, 1);
+
+                    // Replace any dependencies that referenced the temp id to use the new server id
+                    boardData.dependencies = boardData.dependencies.map(d => {
+                        const newDep = { ...d };
+                        if (newDep.from === tempId) newDep.from = sticky.id;
+                        if (newDep.to === tempId) newDep.to = sticky.id;
+                        return newDep;
+                    });
+                    // Persist updated dependencies so server stores the replaced IDs
+                    try {
+                        socket.emit('update-dependencies', { sessionId: sessionId, dependencies: boardData.dependencies });
+                    } catch (e) {
+                        // If sessionId/socket not available, still try emitting dependencies only
+                        try { socket.emit('update-dependencies', boardData.dependencies); } catch (e2) { /* ignore */ }
                     }
-                    return true;
-                });
+                }
 
                 boardData.stickies.push(sticky);
                 renderBoard();
@@ -953,33 +1016,70 @@
             
             socket.on('dependencies-updated', (dependencies) => {
                 boardData.dependencies = dependencies;
-                drawDependencies();
+                if (window.showDependencies) {
+                    try { drawDependencies(); } catch (e) { /* ignore */ }
+                }
             });
             
             socket.on('team-added', (team) => {
+                // Find and clear any cleanup timeout for this team
+                if (window._teamCleanupTimeouts) {
+                    // Look for temp team with matching name
+                    const tempTeam = boardData.teams.find(t => t.isTemp && t.name === team.name);
+                    if (tempTeam) {
+                        const tempId = tempTeam.id;
+                        if (window._teamCleanupTimeouts[tempId]) {
+                            clearTimeout(window._teamCleanupTimeouts[tempId]);
+                            delete window._teamCleanupTimeouts[tempId];
+                        }
+                    }
+                }
+
+                // Remove any temporary teams
+                const beforeCount = boardData.teams.length;
+                boardData.teams = boardData.teams.filter(t => !t.isTemp);
+
                 boardData.teams.push(team);
                 renderBoard();
                 renderManagementModal(); // Update management modal if open
             });
-            
+
+            socket.on('sprint-added', (sprint) => {
+                
+                // Find and clear any cleanup timeout for this sprint
+                if (window._sprintCleanupTimeouts) {
+                    // Look for temp sprint with matching name
+                    const tempSprint = boardData.sprints.find(s => s.isTemp && s.name === sprint.name);
+                    if (tempSprint) {
+                        const tempId = tempSprint.id;
+                        if (window._sprintCleanupTimeouts[tempId]) {
+                            clearTimeout(window._sprintCleanupTimeouts[tempId]);
+                            delete window._sprintCleanupTimeouts[tempId];
+                        }
+                    }
+                }
+
+                // Remove any temporary sprints
+                const beforeCount = boardData.sprints.length;
+                boardData.sprints = boardData.sprints.filter(s => !s.isTemp);
+                
+                boardData.sprints.push(sprint);
+                renderBoard();
+                renderManagementModal();
+            });            
+
             socket.on('team-removed', (teamId) => {
                 boardData.teams = boardData.teams.filter(d => d.id !== teamId);
                 boardData.stickies = boardData.stickies.filter(s => s.team !== teamId);
                 renderBoard();
-                renderManagementModal(); // Update management modal if open
-            });
-            
-            socket.on('sprint-added', (sprint) => {
-                boardData.sprints.push(sprint);
-                renderBoard();
-                renderManagementModal(); // Update management modal if open
+                renderManagementModal();
             });
             
             socket.on('sprint-removed', (sprintId) => {
                 boardData.sprints = boardData.sprints.filter(s => s.id !== sprintId);
                 boardData.stickies = boardData.stickies.filter(s => s.sprint !== sprintId);
                 renderBoard();
-                renderManagementModal(); // Update management modal if open
+                renderManagementModal();
             });
             
             socket.on('user-joined', (data) => {
