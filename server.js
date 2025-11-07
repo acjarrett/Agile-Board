@@ -542,6 +542,16 @@ io.on('connection', (socket) => {
   });
 });
 
+// Health endpoint for platform probes
+app.get('/health', (req, res) => {
+  try {
+    const sessionsCount = Object.keys(sessionData.sessions || {}).length;
+    res.json({ status: 'ok', time: new Date().toISOString(), sessions: sessionsCount });
+  } catch (e) {
+    res.status(500).json({ status: 'error', message: e?.message || 'unknown' });
+  }
+});
+
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Open http://localhost:${PORT} in your browser`);

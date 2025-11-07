@@ -1,0 +1,43 @@
+{
+  "manifestVersion": 1,
+  "id": "agile-board-extension",
+  "publisher": "your-publisher-id",
+  "version": "0.1.0",
+  "name": "Agile Board Planning Hub",
+  "description": "Custom planning and dependency visualization hub similar to Estimate, embedded under Azure Boards.",
+  "public": false,
+  "tags": ["boards", "planning", "agile", "dependencies"],
+  "categories": ["Azure Boards"],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "icons": {
+    "default": "images/icon.png"
+  },
+  "files": [
+    { "path": "my-board.html", "addressable": true },
+    { "path": "sdk/azure-devops-extension-sdk.js", "addressable": true }
+  ],
+  "contributions": [
+    {
+      "id": "agile-board-hub",
+      "type": "ms.vss-web.hub",
+      "description": "Adds Agile Board hub under Boards for multi-team iteration planning.",
+      "targets": ["ms.vss-work-web.work-hub-group"],
+      "properties": {
+        "name": "Agile Planning",
+        "order": 90,
+        "uri": "my-board.html",
+        "iconName": "Processing"
+      }
+    }
+  ],
+  "scopes": ["vso.work"],
+  "galleryFlags": ["Preview"],
+  "contentTypes": [{"name": "html"}],
+  "links": {
+    "learn": {"uri": "https://example.com/docs"}
+  }
+}

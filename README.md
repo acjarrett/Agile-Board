@@ -113,6 +113,29 @@ npm start
 # Access via http://YOUR_IP:3000
 ```
 
+### Render (Recommended for quick free hosting)
+1. Push this repository to GitHub.
+2. Create a Render account and choose "New +" → "Web Service".
+3. Select your repo.
+4. Set Build Command (optional): `npm install`  (Render auto-installs by default).
+5. Set Start Command: `node server.js`.
+6. Ensure Environment has `NODE_VERSION` if you need a specific version.
+7. Deploy and note the public URL (e.g. `https://agile-board.onrender.com`).
+8. Test with multiple browser tabs.
+
+Health check endpoint available at `/health`.
+
+### Render Persistence Caveat
+This app currently stores session state in `data/sessions.json`. On free tiers the instance may restart or redeploy, losing transient session data. For production:
+- Replace file storage with a managed DB (Postgres, Redis, or Mongo).
+- Or move sessions to a cloud key-value store.
+
+### Environment Variables
+- `PORT`: Server port (Render will inject one automatically)
+
+### Keep Alive (Optional)
+If cold starts are problematic, use an external uptime ping service to hit the root or `/health` endpoint every few minutes (respect platform policies).
+
 
 ### Environment Variables
 - `PORT`: Server port (default: 3000)
