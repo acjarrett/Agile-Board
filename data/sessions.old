@@ -1,0 +1,4544 @@
+{
+  "sessions": {
+    "143d01b9-abbc-4a78-975e-713c167c3617": {
+      "code": "R2HTL1",
+      "created": "2025-11-06T21:38:55.906Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          },
+          {
+            "id": "sample",
+            "name": "Sample",
+            "color": "team-sample"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "devops",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 7,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          },
+          {
+            "id": 13,
+            "title": "TEST",
+            "team": "sample",
+            "sprint": 1,
+            "description": "",
+            "deleted": true,
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 14
+      }
+    },
+    "961d98aa-5863-49c4-9272-9c962656c3b8": {
+      "code": "X4E7H6",
+      "created": "2025-11-06T21:47:24.452Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "80667426-2d86-47c2-a350-ee22651d2b94": {
+      "code": "83779P",
+      "created": "2025-11-06T23:02:45.561Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 7,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "dev",
+            "sprint": 4,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "qa",
+            "sprint": 1,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "design",
+            "sprint": 5,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "marketing",
+            "sprint": 2,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "5ff7c618-e178-430e-b5c5-67efb3d7d449": {
+      "code": "3C0J6L",
+      "created": "2025-11-06T23:07:20.739Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          },
+          {
+            "from": 12,
+            "to": 10,
+            "relationship": "depends on",
+            "additionalInfo": ""
+          },
+          {
+            "from": 8,
+            "to": 11,
+            "relationship": "depends on",
+            "additionalInfo": ""
+          },
+          {
+            "from": 11,
+            "to": 9,
+            "relationship": "depends on",
+            "additionalInfo": ""
+          },
+          {
+            "from": 5,
+            "to": 9,
+            "relationship": "depends on",
+            "additionalInfo": ""
+          },
+          {
+            "from": 3,
+            "to": 6,
+            "relationship": "depends on",
+            "additionalInfo": ""
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "marketing",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "product",
+            "sprint": 6,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "b6ba0791-e5fb-4e06-8c95-a890c302038a": {
+      "code": "GS4HJA",
+      "created": "2025-11-06T23:10:11.959Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "6e2ed810-2050-4536-9864-bf3002f6c1e1": {
+      "code": "MCOT8H",
+      "created": "2025-11-06T23:12:03.320Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "9d87eb02-2424-4059-8b13-94ceb2591cd8": {
+      "code": "6T4ZHU",
+      "created": "2025-11-06T23:13:35.743Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 1,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "design",
+            "sprint": 5,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "a4cfc22a-427b-4505-859b-354cddc3bb74": {
+      "code": "RUPFD6",
+      "created": "2025-11-06T23:47:17.154Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          },
+          {
+            "id": 13,
+            "title": "Test Feature",
+            "team": "product",
+            "sprint": 5,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 14,
+            "title": "Test Feature",
+            "team": "qa",
+            "sprint": 6,
+            "description": "",
+            "deleted": true,
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 15
+      }
+    },
+    "d5a0dcb6-e145-4094-9b5d-b0f8e1c2c26d": {
+      "code": "K7Z3E9",
+      "created": "2025-11-06T23:50:05.937Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "b9df6905-e365-4880-a2f3-63b70fc9ded4": {
+      "code": "XGDWEW",
+      "created": "2025-11-06T23:53:19.475Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "366185d9-5e9f-41f5-923c-655e99420e80": {
+      "code": "GYBK57",
+      "created": "2025-11-06T23:55:54.098Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "97266906-d828-42f4-9fb5-5d22e9594394": {
+      "code": "J40JAZ",
+      "created": "2025-11-06T23:56:31.373Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "50f1543a-6f04-4545-a4fe-3e3eec97b840": {
+      "code": "Q3QJHU",
+      "created": "2025-11-06T23:58:59.985Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "dev",
+            "sprint": 4,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "dev",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 4,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "a55ebc5d-15e0-4b17-8951-7532c5ce0dfc": {
+      "code": "LTJNZF",
+      "created": "2025-11-07T00:01:42.608Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 1,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "dev",
+            "sprint": 4,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 4,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "dev",
+            "sprint": 2,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "dev",
+            "sprint": 5,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 2,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          },
+          {
+            "id": 13,
+            "title": "Ryker",
+            "team": "design",
+            "sprint": 2,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 14,
+            "title": "ytrffddsasaqaa",
+            "team": "dev",
+            "sprint": 6,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 15,
+            "title": "676767",
+            "team": "design",
+            "sprint": 2,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 16,
+            "title": "123456790",
+            "team": "design",
+            "sprint": 1,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 17,
+            "title": "😊",
+            "team": "design",
+            "sprint": 3,
+            "description": "",
+            "deleted": true,
+            "type": "Feature"
+          },
+          {
+            "id": 18,
+            "title": "✈️🛩️✈️🛩️✈️🛩️",
+            "team": "design",
+            "sprint": 2,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 19,
+            "title": "4976G",
+            "team": "devops",
+            "sprint": 6,
+            "description": "",
+            "type": "Feature"
+          },
+          {
+            "id": 20,
+            "title": "jarrett",
+            "team": "design",
+            "sprint": 2,
+            "description": "",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 21
+      }
+    },
+    "f676cdfb-7627-4193-8b27-4aa4ab9828b1": {
+      "code": "UHNQVJ",
+      "created": "2025-11-07T00:27:59.083Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "qa",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "eabc0f95-d4de-4575-af9b-edcc2d593c9b": {
+      "code": "RG9UOS",
+      "created": "2025-11-07T00:29:11.270Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "devops",
+            "sprint": 1,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 3,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 1,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "fbc63e58-1c0c-41b2-be7c-18d7873c2994": {
+      "code": "7JUZTM",
+      "created": "2025-11-07T00:31:16.668Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 4,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "design",
+            "sprint": 7,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "qa",
+            "sprint": 1,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "design",
+            "sprint": 1,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 2,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 1,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "devops",
+            "sprint": 4,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "fba8575e-546e-4f65-b035-8812a973b5a1": {
+      "code": "4LUTEJ",
+      "created": "2025-11-07T00:46:14.673Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "c8cedc82-4804-4c94-b738-ed3ed21d3354": {
+      "code": "4DJIOW",
+      "created": "2025-11-07T01:00:19.212Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "f419cc64-520e-4895-861c-2b5ab4b57dd9": {
+      "code": "378AV8",
+      "created": "2025-11-07T01:44:01.568Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "Sarah",
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support.",
+            "type": "Feature"
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "team": "dev",
+            "sprint": 1,
+            "assignee": "John",
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "team": "design",
+            "sprint": 2,
+            "assignee": "Mike",
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns.",
+            "type": "Feature"
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "team": "dev",
+            "sprint": 3,
+            "assignee": "Lisa",
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection.",
+            "type": "Feature"
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "team": "qa",
+            "sprint": 3,
+            "assignee": "Tom",
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios.",
+            "type": "Feature"
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "team": "devops",
+            "sprint": 2,
+            "assignee": "Alex",
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities.",
+            "type": "Feature"
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "team": "product",
+            "sprint": 1,
+            "assignee": "Emma",
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes.",
+            "type": "Feature"
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "team": "product",
+            "sprint": 4,
+            "assignee": "David",
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system.",
+            "type": "Feature"
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "team": "qa",
+            "sprint": 4,
+            "assignee": "Amy",
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks.",
+            "type": "Feature"
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "team": "devops",
+            "sprint": 5,
+            "assignee": "Ryan",
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards.",
+            "type": "Feature"
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "team": "product",
+            "sprint": 3,
+            "assignee": "Emma",
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features.",
+            "type": "Feature"
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "team": "dev",
+            "sprint": 6,
+            "assignee": "John",
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools.",
+            "type": "Feature"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    },
+    "106f4762-219f-454e-adde-a190f1349add": {
+      "code": "AZLKSV",
+      "created": "2025-11-07T01:45:53.971Z",
+      "users": [],
+      "activeUsers": [],
+      "boardData": {
+        "teams": [
+          {
+            "id": "dev",
+            "name": "IT Devs",
+            "color": "team-dev"
+          },
+          {
+            "id": "design",
+            "name": "R&G",
+            "color": "team-design"
+          },
+          {
+            "id": "qa",
+            "name": "People Ops",
+            "color": "team-qa"
+          },
+          {
+            "id": "devops",
+            "name": "Payments",
+            "color": "team-devops"
+          },
+          {
+            "id": "product",
+            "name": "Mortgage",
+            "color": "team-product"
+          },
+          {
+            "id": "marketing",
+            "name": "Other",
+            "color": "team-marketing"
+          }
+        ],
+        "sprints": [
+          {
+            "id": 1,
+            "name": "Sprint 1"
+          },
+          {
+            "id": 2,
+            "name": "Sprint 2"
+          },
+          {
+            "id": 3,
+            "name": "Sprint 3"
+          },
+          {
+            "id": 4,
+            "name": "Sprint 4"
+          },
+          {
+            "id": 5,
+            "name": "Sprint 5"
+          },
+          {
+            "id": 6,
+            "name": "Sprint 6"
+          },
+          {
+            "id": 7,
+            "name": "Sprint 7"
+          },
+          {
+            "id": 8,
+            "name": "Sprint 8"
+          }
+        ],
+        "stickies": [
+          {
+            "id": 1,
+            "title": "User Authentication System",
+            "type": "Feature",
+            "team": "dev",
+            "sprint": 1,
+            "description": "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support."
+          },
+          {
+            "id": 2,
+            "title": "Database Performance Optimization",
+            "type": "Feature",
+            "team": "dev",
+            "sprint": 1,
+            "description": "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios."
+          },
+          {
+            "id": 3,
+            "title": "Mobile App UI Redesign",
+            "type": "Feature",
+            "team": "design",
+            "sprint": 2,
+            "description": "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns."
+          },
+          {
+            "id": 4,
+            "title": "Payment Gateway Integration",
+            "type": "Milestone",
+            "team": "dev",
+            "sprint": 3,
+            "description": "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection."
+          },
+          {
+            "id": 5,
+            "title": "Automated Testing Suite",
+            "type": "Feature",
+            "team": "qa",
+            "sprint": 3,
+            "description": "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios."
+          },
+          {
+            "id": 6,
+            "title": "CI/CD Pipeline Setup",
+            "type": "Milestone",
+            "team": "devops",
+            "sprint": 2,
+            "description": "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities."
+          },
+          {
+            "id": 7,
+            "title": "Employee Onboarding Portal",
+            "type": "Feature",
+            "team": "product",
+            "sprint": 1,
+            "description": "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes."
+          },
+          {
+            "id": 8,
+            "title": "Customer Support Chat",
+            "type": "Feature",
+            "team": "product",
+            "sprint": 4,
+            "description": "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system."
+          },
+          {
+            "id": 9,
+            "title": "Load Testing & Performance",
+            "type": "Major Dependency",
+            "team": "qa",
+            "sprint": 4,
+            "description": "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks."
+          },
+          {
+            "id": 10,
+            "title": "Security Vulnerability Assessment",
+            "type": "Major Dependency",
+            "team": "devops",
+            "sprint": 5,
+            "description": "Perform security audit including penetration testing, code review, and compliance validation for data protection standards."
+          },
+          {
+            "id": 11,
+            "title": "User Feedback Dashboard",
+            "type": "Feature",
+            "team": "product",
+            "sprint": 3,
+            "description": "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features."
+          },
+          {
+            "id": 12,
+            "title": "Data Analytics Platform",
+            "type": "Feature",
+            "team": "dev",
+            "sprint": 6,
+            "description": "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools."
+          }
+        ],
+        "dependencies": [
+          {
+            "from": 1,
+            "to": 4,
+            "relationship": "prerequisite for",
+            "additionalInfo": "Users must be authenticated before they can make payments"
+          },
+          {
+            "from": 2,
+            "to": 12,
+            "relationship": "enables",
+            "additionalInfo": "Optimized database is required for real-time analytics performance"
+          },
+          {
+            "from": 6,
+            "to": 5,
+            "relationship": "enables",
+            "additionalInfo": "CI/CD pipeline must be in place before automated testing can be effectively implemented"
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "relationship": "requires",
+            "additionalInfo": "Payment system needs load testing to ensure it can handle transaction volumes"
+          },
+          {
+            "from": 10,
+            "to": 4,
+            "relationship": "blocks",
+            "additionalInfo": "Security assessment must complete before payment gateway goes live"
+          }
+        ],
+        "nextStickyId": 13
+      }
+    }
+  },
+  "activeCodes": [
+    "R2HTL1",
+    "X4E7H6",
+    "83779P",
+    "3C0J6L",
+    "GS4HJA",
+    "MCOT8H",
+    "6T4ZHU",
+    "RUPFD6",
+    "K7Z3E9",
+    "XGDWEW",
+    "GYBK57",
+    "J40JAZ",
+    "Q3QJHU",
+    "LTJNZF",
+    "UHNQVJ",
+    "RG9UOS",
+    "7JUZTM",
+    "4LUTEJ",
+    "4DJIOW",
+    "378AV8",
+    "AZLKSV"
+  ]
+}

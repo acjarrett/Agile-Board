@@ -37,40 +37,33 @@ const defaultBoardData = {
     { id: 'qa', name: 'People Ops', color: 'team-qa' },
     { id: 'devops', name: 'Payments', color: 'team-devops' },
     { id: 'product', name: 'Mortgage', color: 'team-product' },
-    { id: 'marketing', name: 'Other', color: 'team-marketing' }
+    { id: 'marketing', name: 'Marketing', color: 'team-marketing' }
   ],
   sprints: [
-    { id: 1, name: 'Sprint 1' },
-    { id: 2, name: 'Sprint 2' },
-    { id: 3, name: 'Sprint 3' },
-    { id: 4, name: 'Sprint 4' },
-    { id: 5, name: 'Sprint 5' },
-    { id: 6, name: 'Sprint 6' },
-    { id: 7, name: 'Sprint 7' },
-    { id: 8, name: 'Sprint 8' }
+    { id: 1, name: 'Iteration 1' },
+    { id: 2, name: 'Iteration 2' },
+    { id: 3, name: 'Iteration 3' },
+    { id: 4, name: 'Iteration 4' },
+    { id: 5, name: 'Iteration 5' },
+    { id: 6, name: 'Iteration 6' }
   ],
-  features: [
-    { id: 1, title: "User Authentication System", team: "dev", sprint: 1, assignee: "Sarah", description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
-    { id: 2, title: "Database Performance Optimization", team: "dev", sprint: 1, assignee: "John", description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
-    { id: 3, title: "Mobile App UI Redesign", team: "design", sprint: 2, assignee: "Mike", description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
-    { id: 4, title: "Payment Gateway Integration", team: "dev", sprint: 3, assignee: "Lisa", description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
-    { id: 5, title: "Automated Testing Suite", team: "qa", sprint: 3, assignee: "Tom", description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
-    { id: 6, title: "CI/CD Pipeline Setup", team: "devops", sprint: 2, assignee: "Alex", description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
-    { id: 7, title: "Employee Onboarding Portal", team: "product", sprint: 1, assignee: "Emma", description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
-    { id: 8, title: "Customer Support Chat", team: "product", sprint: 4, assignee: "David", description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
-    { id: 9, title: "Load Testing & Performance", team: "qa", sprint: 4, assignee: "Amy", description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
-    { id: 10, title: "Security Vulnerability Assessment", team: "devops", sprint: 5, assignee: "Ryan", description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
-    { id: 11, title: "User Feedback Dashboard", team: "product", sprint: 3, assignee: "Emma", description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
-    { id: 12, title: "Data Analytics Platform", team: "dev", sprint: 6, assignee: "John", description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
+  stickies: [
+    { id: 1, title: "User Authentication System", type: "Feature", team: "dev", sprint: 1, description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
+    { id: 2, title: "Database Performance Optimization", type: "Feature", team: "dev", sprint: 1, description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
+    { id: 3, title: "Mobile App UI Redesign", type: "Feature", team: "design", sprint: 2, description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
+    { id: 4, title: "Payment Gateway Integration", type: "Milestone", team: "dev", sprint: 3, description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
+    { id: 5, title: "Automated Testing Suite", type: "Feature", team: "qa", sprint: 3, description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
+    { id: 6, title: "CI/CD Pipeline Setup", type: "Milestone", team: "devops", sprint: 2, description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
+    { id: 7, title: "Employee Onboarding Portal", type: "Feature", team: "product", sprint: 1, description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
+    { id: 8, title: "Customer Support Chat", type: "Feature", team: "product", sprint: 4, description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
+    { id: 9, title: "Load Testing & Performance", type: "Major Dependency", team: "qa", sprint: 4, description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
+    { id: 10, title: "Security Vulnerability Assessment", type: "Major Dependency", team: "devops", sprint: 5, description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
+    { id: 11, title: "User Feedback Dashboard", type: "Feature", team: "product", sprint: 3, description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
+    { id: 12, title: "Data Analytics Platform", type: "Feature", team: "dev", sprint: 6, description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
   ],
   dependencies: [
-    { from: 1, to: 4, relationship: 'prerequisite for', additionalInfo: 'Users must be authenticated before they can make payments' },
-    { from: 2, to: 12, relationship: 'enables', additionalInfo: 'Optimized database is required for real-time analytics performance' },
-    { from: 6, to: 5, relationship: 'enables', additionalInfo: 'CI/CD pipeline must be in place before automated testing can be effectively implemented' },
-    { from: 4, to: 9, relationship: 'requires', additionalInfo: 'Payment system needs load testing to ensure it can handle transaction volumes' },
-    { from: 10, to: 4, relationship: 'blocks', additionalInfo: 'Security assessment must complete before payment gateway goes live' }
   ],
-  nextFeatureId: 13
+    nextStickyId: 13
 };
 
 // Session data structure
@@ -83,7 +76,24 @@ const defaultSessions = {
 function loadData() {
   try {
     if (fs.existsSync(DATA_FILE)) {
-      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+
+      // Migrate legacy 'features' -> 'stickies' if needed
+      if (data && data.features && !data.stickies) {
+        data.stickies = data.features.map(feature => {
+          const team = feature.team || feature.dept;
+          const sticky = { ...feature, type: feature.type || 'Feature', team };
+          if (sticky.dept) delete sticky.dept;
+          return sticky;
+        });
+        delete data.features;
+        if (data.nextFeatureId && !data.nextStickyId) {
+          data.nextStickyId = data.nextFeatureId;
+          delete data.nextFeatureId;
+        }
+      }
+
+      return data;
     }
   } catch (error) {
     console.log('Error loading board data, using defaults:', error.message);
@@ -105,24 +115,6 @@ function loadSessions() {
           session.activeUsers = new Set(session.activeUsers);
         }
         
-        // Migrate departments to teams if needed
-        if (session.boardData && session.boardData.departments && !session.boardData.teams) {
-          session.boardData.teams = session.boardData.departments.map(dept => ({
-            ...dept,
-            color: dept.color.replace('department-', 'team-')
-          }));
-          delete session.boardData.departments;
-        }
-        
-        // Migrate feature dept to team if needed
-        if (session.boardData && session.boardData.features) {
-          session.boardData.features.forEach(feature => {
-            if (feature.dept && !feature.team) {
-              feature.team = feature.dept;
-              delete feature.dept;
-            }
-          });
-        }
         
         // Ensure dependencies have the new structure
         if (session.boardData && session.boardData.dependencies) {
@@ -282,55 +274,67 @@ io.on('connection', (socket) => {
     }
   });
   
-  // Handle feature updates
-  socket.on('update-feature', (data) => {
-    if (socket.sessionId) {
-      const session = sessionData.sessions[socket.sessionId];
+  // Handle sticky updates
+  socket.on('update-sticky', (data) => {
+    const sid = socket.sessionId || data.sessionId;
+    if (sid) {
+      const session = sessionData.sessions[sid];
       if (session) {
-        const featureIndex = session.boardData.features.findIndex(f => f.id === data.id);
-        if (featureIndex !== -1) {
-          session.boardData.features[featureIndex] = { ...session.boardData.features[featureIndex], ...data };
-          saveSessions(sessionData);
-          
-          // Broadcast to all users in session
-          io.to(socket.sessionId).emit('feature-updated', data);
+        if (data.deleted) {
+          session.boardData.stickies = session.boardData.stickies.filter(s => s.id !== data.id);
+        } else {
+          const stickyIndex = session.boardData.stickies.findIndex(s => s.id === data.id);
+          if (stickyIndex !== -1) {
+            session.boardData.stickies[stickyIndex] = { ...session.boardData.stickies[stickyIndex], ...data };
+          }
         }
-      }
-    }
-  });
-  
-  // Handle feature creation
-  socket.on('create-feature', (data) => {
-    if (socket.sessionId) {
-      const session = sessionData.sessions[socket.sessionId];
-      if (session) {
-        const newFeature = {
-          id: session.boardData.nextFeatureId++,
-          ...data,
-          description: data.description || ''
-        };
-        session.boardData.features.push(newFeature);
         saveSessions(sessionData);
         
         // Broadcast to all users in session
-        io.to(socket.sessionId).emit('feature-created', newFeature);
+        io.to(sid).emit('sticky-updated', data);
       }
     }
   });
   
-  // Handle feature movement
-  socket.on('move-feature', (data) => {
-    if (socket.sessionId) {
-      const session = sessionData.sessions[socket.sessionId];
+  // Handle sticky creation
+  socket.on('create-sticky', (data) => {
+    // allow sessionId passed in payload as fallback
+    const sid = socket.sessionId || data.sessionId;
+    if (sid) {
+      const session = sessionData.sessions[sid];
       if (session) {
-        const featureIndex = session.boardData.features.findIndex(f => f.id === data.featureId);
-        if (featureIndex !== -1) {
-          session.boardData.features[featureIndex].team = data.team;
-          session.boardData.features[featureIndex].sprint = data.sprint;
+        const payload = { ...data };
+        // remove sessionId from payload before storing
+        delete payload.sessionId;
+
+        const newSticky = {
+          id: session.boardData.nextStickyId++,
+          ...payload,
+          description: payload.description || ''
+        };
+        session.boardData.stickies.push(newSticky);
+        saveSessions(sessionData);
+
+        // Broadcast to all users in session
+        io.to(sid).emit('sticky-created', newSticky);
+      }
+    }
+  });
+  
+  // Handle sticky movement
+  socket.on('move-sticky', (data) => {
+    const sid = socket.sessionId || data.sessionId;
+    if (sid) {
+      const session = sessionData.sessions[sid];
+      if (session) {
+        const stickyIndex = session.boardData.stickies.findIndex(s => s.id === data.stickyId);
+        if (stickyIndex !== -1) {
+          session.boardData.stickies[stickyIndex].team = data.team;
+          session.boardData.stickies[stickyIndex].sprint = data.sprint;
           saveSessions(sessionData);
           
           // Broadcast to all users in session
-          io.to(socket.sessionId).emit('feature-moved', data);
+          io.to(sid).emit('sticky-moved', data);
         }
       }
     }
@@ -355,11 +359,14 @@ io.on('connection', (socket) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
       if (session) {
-        session.boardData.teams.push(team);
-        saveSessions(sessionData);
-        
-        // Broadcast to all users in session
-        io.to(socket.sessionId).emit('team-added', team);
+        // Check for duplicates
+        if (!session.boardData.teams.some(t => t.id === team.id)) {
+          session.boardData.teams.push(team);
+          saveSessions(sessionData);
+          
+          // Broadcast to all users in session
+          io.to(socket.sessionId).emit('team-added', team);
+        }
       }
     }
   });
@@ -368,9 +375,18 @@ io.on('connection', (socket) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
       if (session) {
+        // Remove team and its stickies
         session.boardData.teams = session.boardData.teams.filter(d => d.id !== teamId);
-        // Also remove features in this team
-        session.boardData.features = session.boardData.features.filter(f => f.team !== teamId);
+        session.boardData.stickies = session.boardData.stickies.filter(s => s.team !== teamId);
+        
+        // Also remove any dependencies involving stickies from this team
+        session.boardData.dependencies = session.boardData.dependencies.filter(d => {
+          const fromSticky = session.boardData.stickies.find(s => s.id === d.from);
+          const toSticky = session.boardData.stickies.find(s => s.id === d.to);
+          return fromSticky && toSticky; // Only keep dependencies where both stickies still exist
+        });
+        
+        // Save changes to file
         saveSessions(sessionData);
         
         // Broadcast to all users in session
@@ -384,11 +400,18 @@ io.on('connection', (socket) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
       if (session) {
-        session.boardData.sprints.push(sprint);
+        // Ensure unique ID
+        const newId = Math.max(...session.boardData.sprints.map(s => s.id), 0) + 1;
+        const newSprint = {
+          ...sprint,
+          id: newId
+        };
+
+        session.boardData.sprints.push(newSprint);
         saveSessions(sessionData);
         
         // Broadcast to all users in session
-        io.to(socket.sessionId).emit('sprint-added', sprint);
+        io.to(socket.sessionId).emit('sprint-added', newSprint);
       }
     }
   });
@@ -397,9 +420,18 @@ io.on('connection', (socket) => {
     if (socket.sessionId) {
       const session = sessionData.sessions[socket.sessionId];
       if (session) {
+        // Remove sprint and its stickies
         session.boardData.sprints = session.boardData.sprints.filter(s => s.id !== sprintId);
-        // Also remove features in this sprint
-        session.boardData.features = session.boardData.features.filter(f => f.sprint !== sprintId);
+        session.boardData.stickies = session.boardData.stickies.filter(s => s.sprint !== sprintId);
+        
+        // Also remove any dependencies involving removed stickies
+        session.boardData.dependencies = session.boardData.dependencies.filter(d => {
+          const fromSticky = session.boardData.stickies.find(s => s.id === d.from);
+          const toSticky = session.boardData.stickies.find(s => s.id === d.to);
+          return fromSticky && toSticky; // Only keep dependencies where both stickies still exist
+        });
+        
+        // Save changes to file
         saveSessions(sessionData);
         
         // Broadcast to all users in session

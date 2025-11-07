@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agile Feature Board</title>
+    <title>Agile Board</title>
     <style>
         * {
             margin: 0;
@@ -81,6 +81,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative; /* ensure z-index applies */
+            z-index: 300; /* keep app header above dependency layer */
         }
 
         .app-title {
@@ -176,13 +178,13 @@
         .board-wrapper {
             flex: 1;
             overflow: auto;
-            padding: 20px;
+            padding: 0px;
         }
 
         .board-grid {
             display: grid;
-            grid-template-columns: 150px repeat(var(--sprint-count, 8), 1fr);
-            grid-template-rows: 60px repeat(var(--team-count, 6), minmax(120px, 1fr));
+            grid-template-columns: 150px repeat(var(--sprint-count, 8), minmax(280px, 1fr));
+            grid-template-rows: 60px repeat(var(--team-count, 6), 280px);
             gap: 1px;
             background: #2d3748;
             border: 1px solid #2d3748;
@@ -200,6 +202,7 @@
             font-size: 14px;
             border-right: 1px solid #4a5568;
             position: relative;
+            z-index: 100; /* ensure header sits above dependency layer */
         }
 
         .header-cell.corner {
@@ -233,7 +236,7 @@
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 200; /* keep sprint headers above the SVG dependency layer */
         }
 
         .team-header {
@@ -242,7 +245,7 @@
             text-align: left;
             position: sticky;
             left: 0;
-            z-index: 10;
+            z-index: 200; /* keep team headers above the SVG dependency layer */
             display: flex;
             align-items: center;
             padding-left: 20px;
@@ -253,52 +256,95 @@
             background: #1a202c;
             border: 1px solid #2d3748;
             padding: 10px;
-            min-height: 120px;
+            min-height: 280px;
             position: relative;
             transition: all 0.3s;
+            /* Cork board texture */
+            background-image: 
+                radial-gradient(rgba(255,255,255,.02) 15%, transparent 16%),
+                radial-gradient(rgba(255,255,255,.02) 15%, transparent 16%);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
         }
 
         .grid-cell.drag-over {
             background: rgba(72, 187, 120, 0.1);
             border: 2px dashed #48bb78;
+            /* Maintain cork board texture in drag-over state */
+            background-image: 
+                radial-gradient(rgba(72, 187, 120, .1) 15%, transparent 16%),
+                radial-gradient(rgba(72, 187, 120, .1) 15%, transparent 16%);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
         }
 
         .card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 8px;
+            border-radius: 2px;
+            padding: 15px 12px;
+            margin: 0;
             cursor: move;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+                        0 0 0 1px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
             position: relative;
             color: white;
             font-size: 13px;
+            transform: rotate(-1deg);
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            height: 120px;
+            /* Paper texture */
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), 
+                linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.05) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.05) 75%);
+            background-size: 4px 4px;
+        }
+
+        /* Alternate rotation for every other card */
+        .card:nth-child(even) {
+            transform: rotate(1deg);
         }
 
         .card:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transform: translateY(-5px) scale(1.02) rotate(0deg);
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px rgba(0, 0, 0, 0.1);
         }
 
         .card.dragging {
-            opacity: 0.5;
-            transform: rotate(3deg);
+            opacity: 0.7;
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.4);
         }
 
         .card-title {
             font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 12px;
+            margin: auto;
+            font-size: 13px;
+            line-height: 1.4;
             cursor: pointer;
             padding: 2px 4px;
-            border-radius: 3px;
-            transition: background-color 0.2s ease;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .card-title:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
 
         .card-meta {
@@ -317,8 +363,8 @@
         }
 
         .dependency-dot {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             background: #dc2626;
             border: 1px solid #b91c1c;
             border-radius: 50%;
@@ -335,13 +381,13 @@
         }
 
         .dependency-dot.start {
-            right: -4px;
+            right: -6px;
             top: 50%;
             transform: translateY(-50%);
         }
 
         .dependency-dot.end {
-            left: -4px;
+            left: -6px;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -362,7 +408,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
+            z-index: 1; /* keep dependency layer beneath headers */
         }
 
         svg.dependency-layer path {
@@ -454,12 +500,12 @@
             word-wrap: break-word;
         }
 
-        .info-value.feature-id {
+        .info-value.sticky-id {
             color: #81c995;
             font-family: monospace;
         }
 
-        .info-value.feature-title {
+        .info-value.sticky-title {
             color: #667eea;
             font-size: 28px;
         }
@@ -470,10 +516,6 @@
 
         .info-value.sprint-name {
             color: #4299e1;
-        }
-
-        .info-value.assignee {
-            color: #ed8936;
         }
 
         .info-value.relationship {
@@ -534,8 +576,8 @@
             min-height: 180px;
         }
 
-        /* Larger text areas for feature and dependency descriptions */
-        #featureDescription,
+        /* Larger text areas for sticky and dependency descriptions */
+        #stickyDescription,
         #dependencyAdditionalInfo {
             min-height: 220px;
             font-size: 15px;
@@ -555,6 +597,11 @@
         .team-devops { background: linear-gradient(135deg, #ed8936, #dd6b20); }
         .team-product { background: linear-gradient(135deg, #9f7aea, #805ad5); }
         .team-marketing { background: linear-gradient(135deg, #4299e1, #3182ce); }
+
+        /* Sticky type styles */
+        .sticky-Feature { background: linear-gradient(135deg, #4299e1, #3182ce); }
+        .sticky-Milestone { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+        .sticky-Major-Dependency { background: linear-gradient(135deg, #f56565, #c53030); }
 
         .status-indicator {
             position: absolute;
@@ -608,7 +655,7 @@
     <!-- Authentication Screen -->
     <div id="authContainer" class="auth-container">
         <div class="auth-card">
-            <h1>🚀 Agile Feature Board</h1>
+            <h1>Agile Board</h1>
             <div class="error-message" id="authError"></div>
             <div class="auth-buttons">
                 <button class="btn btn-primary btn-large" onclick="createSession()">Create New Session</button>
@@ -622,7 +669,7 @@
     <!-- Main Application -->
     <div id="appContainer" class="app-container">
         <div class="app-header">
-            <div class="app-title">🚀 Agile Feature Board</div>
+            <div class="app-title">Agile Board</div>
             <div class="session-info">
                 Session: <span id="sessionCode">Loading...</span>
                 <div class="participants-info">
@@ -631,10 +678,8 @@
                 <div class="online-indicator active" id="onlineIndicator"></div>
             </div>
             <div class="controls">
-                <div class="interaction-hint">💡 Click features/dependencies to view info • Double-click features to edit</div>
-                <button class="btn btn-primary" onclick="addNewFeature()">+ Add Feature</button>
+                <button class="btn btn-primary" onclick="addNewSticky()">+ Add Sticky Note</button>
                 <button class="btn btn-secondary" onclick="toggleDependencyMode()">🔗 Dependencies</button>
-                <button class="btn btn-danger" onclick="clearDependencies()">Clear Lines</button>
                 <button class="btn btn-primary" onclick="showManagement()">⚙️ Manage</button>
             </div>
         </div>
@@ -648,38 +693,42 @@
         </div>
     </div>
 
-    <!-- Feature Modal -->
-    <div id="featureModal" class="modal">
+    <!-- Sticky Modal -->
+    <div id="stickyModal" class="modal">
         <div class="modal-content">
-            <h2 id="featureModalTitle">Add New Feature</h2>
+            <h2 id="stickyModalTitle">Add New Sticky Note</h2>
             <div class="form-group">
-                <label>Feature Title</label>
-                <input type="text" id="featureTitle" placeholder="Enter feature title">
+                <label>Type</label>
+                <select id="stickyType">
+                    <option value="Feature">Feature</option>
+                    <option value="Milestone">Milestone</option>
+                    <option value="Major Dependency">Major Dependency</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="stickyTitle" placeholder="Enter title">
             </div>
             <div class="form-group">
                 <label>Team</label>
-                <select id="featureTeam">
+                <select id="stickyTeam">
                     <!-- Dynamic options -->
                 </select>
             </div>
             <div class="form-group">
                 <label>Sprint</label>
-                <select id="featureSprint">
+                <select id="stickySprint">
                     <!-- Dynamic options -->
                 </select>
             </div>
             <div class="form-group">
-                <label>Assignee</label>
-                <input type="text" id="featureAssignee" placeholder="Enter assignee name">
-            </div>
-            <div class="form-group">
                 <label>Description</label>
-                <textarea id="featureDescription" placeholder="Enter detailed description..."></textarea>
+                <textarea id="stickyDescription" placeholder="Enter detailed description..."></textarea>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn btn-secondary" onclick="saveFeature()">Save Feature</button>
-                <button class="btn btn-primary" onclick="closeFeatureModal()">Cancel</button>
-                <button class="btn btn-danger" id="deleteFeatureBtn" onclick="deleteFeature()" style="display: none;">Delete</button>
+                <button class="btn btn-secondary" onclick="saveSticky()">Save Sticky Note</button>
+                <button class="btn btn-primary" onclick="closeStickyModal()">Cancel</button>
+                <button class="btn btn-danger" id="deleteStickyBtn" onclick="deleteSticky()" style="display: none;">Delete</button>
             </div>
         </div>
     </div>
@@ -689,12 +738,12 @@
         <div class="modal-content info-modal">
             <h2>📎 Dependency Information</h2>
             <div class="info-section">
-                <div class="info-label">From Feature:</div>
-                <div class="info-value" id="infoFromFeature"></div>
+                <div class="info-label">From Sticky Note:</div>
+                <div class="info-value" id="infoFromSticky"></div>
             </div>
             <div class="info-section">
-                <div class="info-label">To Feature:</div>
-                <div class="info-value" id="infoToFeature"></div>
+                <div class="info-label">To Sticky Note:</div>
+                <div class="info-value" id="infoToSticky"></div>
             </div>
             <div class="info-section">
                 <div class="info-label">Relationship:</div>
@@ -711,66 +760,19 @@
         </div>
     </div>
 
-    <!-- Feature Info Display Modal -->
-    <div id="featureInfoModal" class="modal">
-        <div class="modal-content info-modal">
-            <h2>🎯 Feature Information</h2>
-            <div class="info-section">
-                <div class="info-label">Feature ID:</div>
-                <div class="info-value feature-id" id="infoFeatureId"></div>
-            </div>
-            <div class="info-section">
-                <div class="info-label">Title:</div>
-                <div class="info-value feature-title" id="infoFeatureTitle"></div>
-            </div>
-            <div class="info-section">
-                <div class="info-label">Team:</div>
-                <div class="info-value team-name" id="infoFeatureTeam"></div>
-            </div>
-            <div class="info-section">
-                <div class="info-label">Sprint:</div>
-                <div class="info-value sprint-name" id="infoFeatureSprint"></div>
-            </div>
-            <div class="info-section">
-                <div class="info-label">Assignee:</div>
-                <div class="info-value assignee" id="infoFeatureAssignee"></div>
-            </div>
-            <div class="info-section">
-                <div class="info-label">Description:</div>
-                <div class="info-value description" id="infoFeatureDescription"></div>
-            </div>
-            <div style="display: flex; gap: 15px; margin-top: 30px; justify-content: center;">
-                <button class="btn btn-secondary btn-large" onclick="editFeatureFromInfo()">✏️ Edit</button>
-                <button class="btn btn-primary btn-large" onclick="closeFeatureInfoModal()">Close</button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Dependency Modal -->
     <div id="dependencyModal" class="modal">
         <div class="modal-content">
             <h2 id="dependencyModalTitle">Dependency Relationship</h2>
             <div class="form-group">
-                <label>From Feature</label>
-                <input type="text" id="dependencyFromFeature" readonly>
+                <label>From Sticky Note</label>
+                <input type="text" id="dependencyFromSticky" readonly>
             </div>
             <div class="form-group">
-                <label>To Feature</label>
-                <input type="text" id="dependencyToFeature" readonly>
-            </div>
-            <div class="form-group">
-                <label>Relationship Type</label>
-                <select id="dependencyRelationship">
-                    <option value="depends on">Depends On</option>
-                    <option value="blocks">Blocks</option>
-                    <option value="enables">Enables</option>
-                    <option value="relates to">Relates To</option>
-                    <option value="prerequisite for">Prerequisite For</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Additional Information</label>
-                <textarea id="dependencyAdditionalInfo" placeholder="Enter additional details about this dependency..."></textarea>
+                <label>To Sticky Note</label>
+                <input type="text" id="dependencyToSticky" readonly>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 20px;">
                 <button class="btn btn-secondary" onclick="saveDependency()">Save Dependency</button>
@@ -786,13 +788,13 @@
             <h2>Board Management</h2>
             <div class="management-controls">
                 <button class="btn btn-secondary" onclick="addTeam()">+ Team</button>
-                <button class="btn btn-secondary" onclick="addSprint()">+ Sprint</button>
+                <button class="btn btn-secondary" onclick="addSprint()">+ Iteration</button>
             </div>
             
             <h3>Teams</h3>
             <div id="teamsList"></div>
             
-            <h3>Sprints</h3>
+            <h3>Iterations</h3>
             <div id="sprintsList"></div>
             
             <div style="display: flex; gap: 10px; margin-top: 20px;">
@@ -809,13 +811,13 @@
         let boardData = {
             teams: [],
             sprints: [],
-            features: [],
+            stickies: [],
             dependencies: [],
-            nextFeatureId: 1
+            nextStickyId: 1
         };
         let dependencyMode = false;
         let selectedCardForDependency = null;
-        let currentEditingFeature = null;
+        let currentEditingSticky = null;
         let currentEditingDependency = null;
 
         // Socket initialization - connect immediately when page loads
@@ -919,24 +921,32 @@
                 renderBoard();
             });
             
-            socket.on('feature-created', (feature) => {
-                boardData.features.push(feature);
+            socket.on('sticky-created', (sticky) => {
+                // Remove any optimistic temp sticky that matches this server sticky (match by title/team/sprint/description)
+                boardData.stickies = boardData.stickies.filter(s => {
+                    if (s.pending) {
+                        return !(s.title === sticky.title && String(s.team) === String(sticky.team) && Number(s.sprint) === Number(sticky.sprint) && s.description === sticky.description);
+                    }
+                    return true;
+                });
+
+                boardData.stickies.push(sticky);
                 renderBoard();
             });
             
-            socket.on('feature-updated', (feature) => {
-                const index = boardData.features.findIndex(f => f.id === feature.id);
+            socket.on('sticky-updated', (sticky) => {
+                const index = boardData.stickies.findIndex(s => s.id === sticky.id);
                 if (index !== -1) {
-                    boardData.features[index] = { ...boardData.features[index], ...feature };
+                    boardData.stickies[index] = { ...boardData.stickies[index], ...sticky };
                     renderBoard();
                 }
             });
             
-            socket.on('feature-moved', (data) => {
-                const feature = boardData.features.find(f => f.id === data.featureId);
-                if (feature) {
-                    feature.team = data.team;
-                    feature.sprint = data.sprint;
+            socket.on('sticky-moved', (data) => {
+                const sticky = boardData.stickies.find(s => s.id === data.stickyId);
+                if (sticky) {
+                    sticky.team = data.team;
+                    sticky.sprint = data.sprint;
                     renderBoard();
                 }
             });
@@ -954,7 +964,7 @@
             
             socket.on('team-removed', (teamId) => {
                 boardData.teams = boardData.teams.filter(d => d.id !== teamId);
-                boardData.features = boardData.features.filter(f => f.team !== teamId);
+                boardData.stickies = boardData.stickies.filter(s => s.team !== teamId);
                 renderBoard();
                 renderManagementModal(); // Update management modal if open
             });
@@ -967,7 +977,7 @@
             
             socket.on('sprint-removed', (sprintId) => {
                 boardData.sprints = boardData.sprints.filter(s => s.id !== sprintId);
-                boardData.features = boardData.features.filter(f => f.sprint !== sprintId);
+                boardData.stickies = boardData.stickies.filter(s => s.sprint !== sprintId);
                 renderBoard();
                 renderManagementModal(); // Update management modal if open
             });

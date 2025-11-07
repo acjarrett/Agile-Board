@@ -3,7 +3,13 @@
 function renderBoard() {
     const board = document.getElementById('board');
     board.innerHTML = '';
-    
+    // Defensive defaults in case server sent older/partial data
+    boardData = boardData || {};
+    boardData.teams = boardData.teams || [];
+    boardData.sprints = boardData.sprints || [];
+    boardData.stickies = boardData.stickies || [];
+    boardData.dependencies = boardData.dependencies || [];
+
     // Update CSS custom properties for grid
     document.documentElement.style.setProperty('--sprint-count', boardData.sprints.length);
     document.documentElement.style.setProperty('--team-count', boardData.teams.length);
@@ -11,7 +17,7 @@ function renderBoard() {
     // Create header row
     const cornerCell = document.createElement('div');
     cornerCell.className = 'header-cell corner';
-    cornerCell.textContent = 'Teams';
+    cornerCell.textContent = '';
     board.appendChild(cornerCell);
     
     // Sprint headers
@@ -37,13 +43,13 @@ function renderBoard() {
             gridCell.dataset.team = team.id;
             gridCell.dataset.sprint = sprint.id;
             
-            // Add features to this cell
-            const featuresInCell = boardData.features.filter(f => 
-                f.team === team.id && f.sprint === sprint.id
-            );
+            // Add stickies to this cell
+            const stickiesInCell = boardData.stickies.filter(s => 
+                s.team === team.id && s.sprint === sprint.id
+            ).slice(0, 4); // Limit to 4 cards
             
-            featuresInCell.forEach(feature => {
-                const card = createFeatureElement(feature);
+            stickiesInCell.forEach(sticky => {
+                const card = createStickyElement(sticky);
                 gridCell.appendChild(card);
             });
             
@@ -51,6 +57,24 @@ function renderBoard() {
             gridCell.addEventListener('dragover', handleDragOver);
             gridCell.addEventListener('drop', handleDrop);
             gridCell.addEventListener('dragleave', handleDragLeave);
+            
+                // Add click handler for creating new stickies
+            gridCell.addEventListener('click', (e) => {
+                // Only handle clicks directly on the grid cell, not on cards
+                if (e.target === gridCell) {
+                    // Check if the cell already has 4 cards
+                    const cardsInCell = boardData.stickies.filter(s => 
+                        s.team === team.id && s.sprint === sprint.id
+                    );
+                    
+                    if (cardsInCell.length >= 4) {
+                        alert('Maximum of 4 stickies allowed per cell');
+                        return;
+                    }
+                    
+                    addNewSticky(team.id, sprint.id);
+                }
+            });
             
             board.appendChild(gridCell);
         });
@@ -63,26 +87,29 @@ function renderBoard() {
     setTimeout(drawDependencies, 100);
 }
 
-function createFeatureElement(feature) {
+function createStickyElement(sticky) {
     const card = document.createElement('div');
-    const teamData = boardData.teams.find(d => d.id === feature.team);
-    card.className = `card ${teamData ? teamData.color : 'team-dev'}`;
+    // Normalize type for CSS class (replace spaces with hyphens)
+    const typeClass = (sticky.type || 'Feature').toString().replace(/\s+/g, '-');
+    card.className = `card sticky-${typeClass}`; // Default to Feature if type not set
     card.draggable = true;
-    card.dataset.cardId = feature.id;
+    card.dataset.cardId = sticky.id;
     card.innerHTML = `
         <div class="status-indicator"></div>
         <div class="dependency-dot start" title="Click to connect"></div>
         <div class="dependency-dot end" title="Click to connect"></div>
-        <div class="card-title" onclick="showFeatureInfo(${feature.id})" ondblclick="editFeature(${feature.id})" title="Click to view info, double-click to edit">${feature.title}</div>
-        <div class="card-meta">
-            <span class="card-id">#${feature.id}</span>
-            <span>${feature.assignee || 'Unassigned'}</span>
-        </div>
+        <div class="card-title" title="Click to edit">${sticky.title}</div>
     `;
-    
-    // Add dependency click handlers
-    card.querySelector('.dependency-dot.start').addEventListener('click', (e) => handleDependencyClick(feature.id, e));
-    card.querySelector('.dependency-dot.end').addEventListener('click', (e) => handleDependencyClick(feature.id, e));
+
+    // Add dependency click handlers (attach after innerHTML set)
+    const startDot = card.querySelector('.dependency-dot.start');
+    const endDot = card.querySelector('.dependency-dot.end');
+    if (startDot) startDot.addEventListener('click', (e) => handleDependencyClick(sticky.id, e));
+    if (endDot) endDot.addEventListener('click', (e) => handleDependencyClick(sticky.id, e));
+
+    // Attach click handler for editing - use closure to capture sticky.id (works for numeric and string temp ids)
+    const titleEl = card.querySelector('.card-title');
+    if (titleEl) titleEl.addEventListener('click', (e) => { e.stopPropagation(); editSticky(sticky.id); });
     
     // Drag events
     card.addEventListener('dragstart', handleDragStart);
@@ -92,8 +119,8 @@ function createFeatureElement(feature) {
 }
 
 function updateFormOptions() {
-    const teamSelect = document.getElementById('featureTeam');
-    const sprintSelect = document.getElementById('featureSprint');
+    const teamSelect = document.getElementById('stickyTeam');
+    const sprintSelect = document.getElementById('stickySprint');
     
     // Update team options
     teamSelect.innerHTML = '';
@@ -135,29 +162,43 @@ function handleDrop(e) {
     e.preventDefault();
     e.currentTarget.classList.remove('drag-over');
     
-    const featureId = parseInt(e.dataTransfer.getData('cardId'));
+    const stickyIdRaw = e.dataTransfer.getData('cardId');
     const dragging = document.querySelector('.dragging');
-    
+
     if (dragging && e.currentTarget.classList.contains('grid-cell')) {
         const newTeam = e.currentTarget.dataset.team;
         const newSprint = parseInt(e.currentTarget.dataset.sprint);
-        
-        // Update feature data
-        const feature = boardData.features.find(f => f.id === featureId);
-        if (feature) {
-            feature.team = newTeam;
-            feature.sprint = newSprint;
-            
-            // Emit move event to server
-            socket.emit('move-feature', {
-                featureId: featureId,
-                team: newTeam,
-                sprint: newSprint
-            });
-            
-            // Update card class and move it
-            const teamData = boardData.teams.find(d => d.id === newTeam);
-            dragging.className = `card ${teamData ? teamData.color : 'team-dev'}`;
+
+        // Check if the target cell already has 4 cards
+        const cardsInCell = boardData.stickies.filter(s => 
+            String(s.team) === String(newTeam) && Number(s.sprint) === Number(newSprint)
+        );
+
+        if (cardsInCell.length >= 4) {
+            alert('Maximum of 4 stickies allowed per cell');
+            return;
+        }
+
+        // Find sticky by comparing stringified ids so temp string ids match
+        const sticky = boardData.stickies.find(s => String(s.id) === String(stickyIdRaw));
+        if (sticky) {
+            sticky.team = newTeam;
+            sticky.sprint = newSprint;
+
+            // Emit move event to server only if sticky has a non-temp numeric id
+            if (!String(sticky.id).startsWith('temp-')) {
+                socket.emit('move-sticky', {
+                    sessionId,
+                    stickyId: sticky.id,
+                    team: newTeam,
+                    sprint: newSprint
+                });
+            }
+
+            // Update card and move it; preserve type class
+            const typeClass = (sticky.type || 'Feature').toString().replace(/\s+/g, '-');
+            // Preserve other classes like 'dragging' by replacing only the sticky-... class
+            dragging.className = `card sticky-${typeClass}`;
             e.currentTarget.appendChild(dragging);
         }
     }
@@ -188,33 +229,35 @@ function toggleDependencyMode() {
     }
 }
 
-function handleDependencyClick(featureId, event) {
+function handleDependencyClick(stickyId, event) {
     event.stopPropagation();
     event.preventDefault();
     
     if (!dependencyMode) return;
     
-    const card = document.querySelector(`[data-card-id="${featureId}"]`);
+    const card = document.querySelector(`[data-card-id="${stickyId}"]`);
     
     if (!selectedCardForDependency) {
-        selectedCardForDependency = featureId;
+        selectedCardForDependency = stickyId;
         card.classList.add('selected-for-dependency');
     } else {
-        if (selectedCardForDependency !== featureId) {
+        if (selectedCardForDependency !== stickyId) {
             const exists = boardData.dependencies.some(d => 
-                (d.from === selectedCardForDependency && d.to === featureId) ||
-                (d.from === featureId && d.to === selectedCardForDependency)
+                (d.from === selectedCardForDependency && d.to === stickyId) ||
+                (d.from === stickyId && d.to === selectedCardForDependency)
             );
             
             if (!exists) {
-                // Open dependency modal to get relationship details
-                openDependencyModal(selectedCardForDependency, featureId, true);
-                // Don't clear selection here - let the modal save function handle it
-                return;
+                const newDependency = {
+                    from: stickyId,
+                    to: selectedCardForDependency
+                };
+                boardData.dependencies.push(newDependency);
+                socket.emit('update-dependencies', boardData.dependencies);
+                drawDependencies();
             }
         }
         
-        // Clear selection if same card clicked or dependency already exists
         document.querySelector(`[data-card-id="${selectedCardForDependency}"]`).classList.remove('selected-for-dependency');
         selectedCardForDependency = null;
     }
@@ -224,22 +267,7 @@ function drawDependencies() {
     const svg = document.getElementById('dependencySvg');
     svg.innerHTML = '';
     
-    // Add defs for arrow marker
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-    marker.setAttribute('id', 'arrowhead');
-    marker.setAttribute('markerWidth', '10');
-    marker.setAttribute('markerHeight', '10');
-    marker.setAttribute('refX', '9');
-    marker.setAttribute('refY', '3');
-    marker.setAttribute('orient', 'auto');
-    
-    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    polygon.setAttribute('points', '0 0, 10 3, 0 6');
-    polygon.setAttribute('fill', '#dc2626');
-    
-    marker.appendChild(polygon);
-    defs.appendChild(marker);
     svg.appendChild(defs);
     
     boardData.dependencies.forEach(dep => {
@@ -250,36 +278,40 @@ function drawDependencies() {
             const fromRect = fromCard.getBoundingClientRect();
             const toRect = toCard.getBoundingClientRect();
             
-            const x1 = fromRect.right;
+            // Connect from left dot to right dot
+            const x1 = fromRect.left;
             const y1 = fromRect.top + fromRect.height / 2;
-            const x2 = toRect.left;
+            const x2 = toRect.right;
             const y2 = toRect.top + toRect.height / 2;
             
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             
-            const controlPoint1X = x1 + Math.abs(x2 - x1) * 0.3;
-            const controlPoint2X = x2 - Math.abs(x2 - x1) * 0.3;
+            const controlPoint1X = x1 - Math.abs(x2 - x1) * 0.3;
+            const controlPoint2X = x2 + Math.abs(x2 - x1) * 0.3;
             
             path.setAttribute('d', `M ${x1} ${y1} C ${controlPoint1X} ${y1}, ${controlPoint2X} ${y2}, ${x2} ${y2}`);
-            path.setAttribute('stroke', '#dc2626');
+            path.setAttribute('stroke', '#dc2626'); 
             path.setAttribute('stroke-width', '2');
             path.setAttribute('fill', 'none');
-            path.setAttribute('marker-end', 'url(#arrowhead)');
             path.setAttribute('opacity', '0.8');
             path.style.filter = 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))';
             path.style.cursor = 'pointer';
             path.setAttribute('data-dependency', `${dep.from}-${dep.to}`);
             
-            // Add tooltip with dependency info
-            const fromFeature = boardData.features.find(f => f.id === dep.from);
-            const toFeature = boardData.features.find(f => f.id === dep.to);
-            const relationship = dep.relationship || 'depends on';
-            const additionalInfo = dep.additionalInfo || 'No additional info';
-            path.setAttribute('title', `${fromFeature?.title} ${relationship} ${toFeature?.title}\n${additionalInfo}`);
+            // Add basic tooltip and click handling
+            const fromSticky = boardData.stickies.find(s => s.id === dep.from);
+            const toSticky = boardData.stickies.find(s => s.id === dep.to);
+            path.setAttribute('title', `${fromSticky?.title} depends on ${toSticky?.title}\nClick to delete`);
             
-            // Add click handler for dependency
-            path.addEventListener('click', () => {
-                showDependencyInfo(dep);
+            // Add click handler for deletion
+            path.addEventListener('click', (e) => {
+                if (confirm('Delete this dependency?')) {
+                    boardData.dependencies = boardData.dependencies.filter(d => 
+                        !(d.from === dep.from && d.to === dep.to)
+                    );
+                    socket.emit('update-dependencies', boardData.dependencies);
+                    drawDependencies();
+                }
             });
             
             svg.appendChild(path);
@@ -287,113 +319,135 @@ function drawDependencies() {
     });
 }
 
-function clearDependencies() {
-    boardData.dependencies = [];
-    socket.emit('update-dependencies', boardData.dependencies);
-    drawDependencies();
+// Sticky management
+function addNewSticky(teamId = null, sprintId = null) {
+    currentEditingSticky = null;
+    document.getElementById('stickyModalTitle').textContent = 'Add New Sticky';
+    document.getElementById('stickyType').value = 'Feature';
+    document.getElementById('stickyTitle').value = '';
+    document.getElementById('stickyTeam').value = teamId || boardData.teams[0]?.id || '';
+    document.getElementById('stickySprint').value = sprintId || boardData.sprints[0]?.id || '';
+    document.getElementById('stickyDescription').value = '';
+    document.getElementById('deleteStickyBtn').style.display = 'none';
+    document.getElementById('stickyModal').style.display = 'block';
 }
 
-// Feature management
-function addNewFeature() {
-    currentEditingFeature = null;
-    document.getElementById('featureModalTitle').textContent = 'Add New Feature';
-    document.getElementById('featureTitle').value = '';
-    document.getElementById('featureTeam').value = boardData.teams[0]?.id || '';
-    document.getElementById('featureSprint').value = boardData.sprints[0]?.id || '';
-    document.getElementById('featureAssignee').value = '';
-    document.getElementById('featureDescription').value = '';
-    document.getElementById('deleteFeatureBtn').style.display = 'none';
-    document.getElementById('featureModal').style.display = 'block';
-}
-
-function editFeature(featureId) {
-    const feature = boardData.features.find(f => f.id === featureId);
-    if (!feature) return;
+function editSticky(stickyId) {
+    const sticky = boardData.stickies.find(s => s.id === stickyId);
+    if (!sticky) return;
     
-    currentEditingFeature = feature;
-    document.getElementById('featureModalTitle').textContent = 'Edit Feature';
-    document.getElementById('featureTitle').value = feature.title;
-    document.getElementById('featureTeam').value = feature.team;
-    document.getElementById('featureSprint').value = feature.sprint;
-    document.getElementById('featureAssignee').value = feature.assignee || '';
-    document.getElementById('featureDescription').value = feature.description || '';
-    document.getElementById('deleteFeatureBtn').style.display = 'block';
-    document.getElementById('featureModal').style.display = 'block';
+    currentEditingSticky = sticky;
+    document.getElementById('stickyModalTitle').textContent = 'Edit Sticky';
+    document.getElementById('stickyType').value = sticky.type || 'Feature';
+    document.getElementById('stickyTitle').value = sticky.title;
+    document.getElementById('stickyTeam').value = sticky.team;
+    document.getElementById('stickySprint').value = sticky.sprint;
+    document.getElementById('stickyDescription').value = sticky.description || '';
+    document.getElementById('deleteStickyBtn').style.display = 'block';
+    document.getElementById('stickyModal').style.display = 'block';
 }
 
-function saveFeature() {
-    const title = document.getElementById('featureTitle').value.trim();
-    const team = document.getElementById('featureTeam').value;
-    const sprint = parseInt(document.getElementById('featureSprint').value);
-    const assignee = document.getElementById('featureAssignee').value.trim();
-    const description = document.getElementById('featureDescription').value.trim();
+function saveSticky() {
+    const title = document.getElementById('stickyTitle').value.trim();
+    const type = document.getElementById('stickyType').value;
+    const team = document.getElementById('stickyTeam').value;
+    const sprint = parseInt(document.getElementById('stickySprint').value);
+    const description = document.getElementById('stickyDescription').value.trim();
     
     if (!title) {
-        alert('Feature title is required');
+        alert('Title is required');
         return;
     }
+
+    // Validate cell capacity: max 4 stickies per cell
+    const cardsInCell = boardData.stickies.filter(s =>
+        String(s.team) === String(team) &&
+        Number(s.sprint) === Number(sprint) &&
+        (!currentEditingSticky || String(s.id) !== String(currentEditingSticky.id))
+    );
+
+    if (currentEditingSticky) {
+        // If moving to a different cell that's already full, block it
+        const isSameCell = String(currentEditingSticky.team) === String(team) && Number(currentEditingSticky.sprint) === Number(sprint);
+        if (!isSameCell && cardsInCell.length >= 4) {
+            alert('The selected cell already has 4 stickies. Please choose a different cell before saving.');
+            return;
+        }
+    } else {
+        // Creating new sticky: disallow if cell already has 4
+        if (cardsInCell.length >= 4) {
+            alert('The selected cell already has 4 stickies. Please choose a different cell before saving.');
+            return;
+        }
+    }
     
-    if (currentEditingFeature) {
-        // Update existing feature
-        const updatedFeature = {
-            id: currentEditingFeature.id,
+    if (currentEditingSticky) {
+        // Update existing sticky
+        const updatedSticky = {
+            id: currentEditingSticky.id,
             title,
+            type,
             team,
             sprint,
-            assignee: assignee || 'Unassigned',
             description
         };
         
         // Update local data
-        const index = boardData.features.findIndex(f => f.id === currentEditingFeature.id);
+        const index = boardData.stickies.findIndex(s => s.id === currentEditingSticky.id);
         if (index !== -1) {
-            boardData.features[index] = updatedFeature;
+            boardData.stickies[index] = updatedSticky;
         }
         
-        // Emit update to server
-        socket.emit('update-feature', updatedFeature);
+    // Emit update to server
+    socket.emit('update-sticky', { sessionId, ...updatedSticky });
     } else {
-        // Create new feature
-        const newFeature = {
+        // Create new sticky
+        const newSticky = {
             title,
+            type,
             team,
             sprint,
-            assignee: assignee || 'Unassigned',
             description
         };
         
-        // Emit creation to server
-        socket.emit('create-feature', newFeature);
+        // Optimistic UI: add a temporary sticky locally so it appears immediately
+        const tempId = `temp-${Date.now()}`;
+        const tempSticky = { id: tempId, ...newSticky, pending: true };
+        boardData.stickies.push(tempSticky);
+        renderBoard();
+
+    // Emit creation to server (server will assign real id and broadcast)
+    socket.emit('create-sticky', { sessionId, ...newSticky });
     }
     
-    closeFeatureModal();
+    closeStickyModal();
     renderBoard();
 }
 
-function deleteFeature() {
-    if (!currentEditingFeature) return;
+function deleteSticky() {
+    if (!currentEditingSticky) return;
     
-    if (confirm('Are you sure you want to delete this feature?')) {
+    if (confirm('Are you sure you want to delete this sticky?')) {
         // Remove from local data
-        boardData.features = boardData.features.filter(f => f.id !== currentEditingFeature.id);
+        boardData.stickies = boardData.stickies.filter(s => s.id !== currentEditingSticky.id);
         
         // Remove dependencies
         boardData.dependencies = boardData.dependencies.filter(d => 
-            d.from !== currentEditingFeature.id && d.to !== currentEditingFeature.id
+            d.from !== currentEditingSticky.id && d.to !== currentEditingSticky.id
         );
         
-        // Emit updates to server
-        socket.emit('update-feature', { id: currentEditingFeature.id, deleted: true });
-        socket.emit('update-dependencies', boardData.dependencies);
+    // Emit updates to server
+    socket.emit('update-sticky', { sessionId, id: currentEditingSticky.id, deleted: true });
+    socket.emit('update-dependencies', boardData.dependencies);
         
-        closeFeatureModal();
+        closeStickyModal();
         renderBoard();
     }
 }
 
-function closeFeatureModal() {
-    document.getElementById('featureModal').style.display = 'none';
-    currentEditingFeature = null;
+function closeStickyModal() {
+    document.getElementById('stickyModal').style.display = 'none';
+    currentEditingSticky = null;
 }
 
 // Management functions
@@ -413,9 +467,18 @@ function renderManagementModal() {
         item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #1a202c; margin: 5px 0; border-radius: 6px;';
         item.innerHTML = `
             <span>${team.name}</span>
-            <button class="btn btn-danger" onclick="removeTeam('${team.id}')" style="padding: 4px 8px; font-size: 12px;">Remove</button>
+            <button class="btn btn-danger remove-team-btn" data-team-id="${team.id}" style="padding: 4px 8px; font-size: 12px;">Remove</button>
         `;
         teamsList.appendChild(item);
+    });
+    
+    // Add event listeners for team remove buttons
+    document.querySelectorAll('.remove-team-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const teamId = e.target.dataset.teamId;
+            removeTeam(teamId);
+        });
     });
     
     // Render sprints
@@ -425,9 +488,18 @@ function renderManagementModal() {
         item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #1a202c; margin: 5px 0; border-radius: 6px;';
         item.innerHTML = `
             <span>${sprint.name}</span>
-            <button class="btn btn-danger" onclick="removeSprint(${sprint.id})" style="padding: 4px 8px; font-size: 12px;">Remove</button>
+            <button class="btn btn-danger remove-sprint-btn" data-sprint-id="${sprint.id}" style="padding: 4px 8px; font-size: 12px;">Remove</button>
         `;
         sprintsList.appendChild(item);
+    });
+    
+    // Add event listeners for sprint remove buttons
+    document.querySelectorAll('.remove-sprint-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sprintId = parseInt(e.target.dataset.sprintId);
+            removeSprint(sprintId);
+        });
     });
 }
 
@@ -437,26 +509,36 @@ function addTeam() {
         const id = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
         const newTeam = {
             id,
-            name: name.trim(),
-            color: `team-${id}`
+            name: name.trim()
         };
         
-        // Only emit to server, don't add locally - server will broadcast back
-        socket.emit('add-team', newTeam);
+            // Optimistic update: Add team locally first
+            boardData.teams.push(newTeam);
+            renderBoard();
+            renderManagementModal();
+        
+            // Then notify server
+            socket.emit('add-team', newTeam);
     }
 }
 
 function addSprint() {
     const name = prompt('Enter sprint name:');
     if (name && name.trim()) {
-        const id = Math.max(...boardData.sprints.map(s => s.id), 0) + 1;
-        const newSprint = {
-            id,
-            name: name.trim()
-        };
+            // Create temporary ID for optimistic update
+            const tempId = Date.now();
+            const newSprint = {
+                id: tempId,
+                name: name.trim()
+            };
         
-        // Only emit to server, don't add locally - server will broadcast back
-        socket.emit('add-sprint', newSprint);
+            // Optimistic update: Add sprint locally first
+            boardData.sprints.push(newSprint);
+            renderBoard();
+            renderManagementModal();
+        
+            // Then notify server
+            socket.emit('add-sprint', newSprint);
     }
 }
 
@@ -464,15 +546,23 @@ function removeTeam(teamId) {
     const team = boardData.teams.find(d => d.id === teamId);
     if (!team) return;
     
-    const featuresInTeam = boardData.features.filter(f => f.team === teamId);
+    const stickiesInTeam = boardData.stickies.filter(s => s.team === teamId);
     let confirmMessage = `Remove team "${team.name}"?`;
     
-    if (featuresInTeam.length > 0) {
-        confirmMessage += `\n\nThis will also remove ${featuresInTeam.length} feature(s) in this team.`;
+    if (stickiesInTeam.length > 0) {
+        confirmMessage += `\n\nThis will also remove ${stickiesInTeam.length} sticky note(s) in this team.`;
     }
     
     if (confirm(confirmMessage)) {
-        // Only emit to server, don't remove locally - server will broadcast back
+        // Update local state immediately
+        boardData.teams = boardData.teams.filter(d => d.id !== teamId);
+        boardData.stickies = boardData.stickies.filter(s => s.team !== teamId);
+        
+        // Update UI
+        renderBoard();
+        renderManagementModal();
+        
+        // Then notify server
         socket.emit('remove-team', teamId);
     }
 }
@@ -481,15 +571,23 @@ function removeSprint(sprintId) {
     const sprint = boardData.sprints.find(s => s.id === sprintId);
     if (!sprint) return;
     
-    const featuresInSprint = boardData.features.filter(f => f.sprint === sprintId);
+    const stickiesInSprint = boardData.stickies.filter(s => s.sprint === sprintId);
     let confirmMessage = `Remove sprint "${sprint.name}"?`;
     
-    if (featuresInSprint.length > 0) {
-        confirmMessage += `\n\nThis will also remove ${featuresInSprint.length} feature(s) in this sprint.`;
+    if (stickiesInSprint.length > 0) {
+        confirmMessage += `\n\nThis will also remove ${stickiesInSprint.length} sticky note(s) in this sprint.`;
     }
     
     if (confirm(confirmMessage)) {
-        // Only emit to server, don't remove locally - server will broadcast back
+        // Update local state immediately
+        boardData.sprints = boardData.sprints.filter(s => s.id !== sprintId);
+        boardData.stickies = boardData.stickies.filter(s => s.sprint !== sprintId);
+        
+        // Update UI
+        renderBoard();
+        renderManagementModal();
+        
+        // Then notify server
         socket.emit('remove-sprint', sprintId);
     }
 }
@@ -519,182 +617,4 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Dependency modal functions
-function openDependencyModal(fromFeatureId, toFeatureId, isNew, existingDependency = null) {
-    const fromFeature = boardData.features.find(f => f.id === fromFeatureId);
-    const toFeature = boardData.features.find(f => f.id === toFeatureId);
-    
-    if (!fromFeature || !toFeature) {
-        console.error('Could not find features:', fromFeatureId, toFeatureId);
-        return;
-    }
-    
-    currentEditingDependency = existingDependency;
-    
-    document.getElementById('dependencyModalTitle').textContent = isNew ? 'Create Dependency' : 'Edit Dependency';
-    document.getElementById('dependencyFromFeature').value = `#${fromFeature.id} - ${fromFeature.title}`;
-    document.getElementById('dependencyToFeature').value = `#${toFeature.id} - ${toFeature.title}`;
-    document.getElementById('dependencyRelationship').value = existingDependency?.relationship || 'depends on';
-    document.getElementById('dependencyAdditionalInfo').value = existingDependency?.additionalInfo || '';
-    document.getElementById('deleteDependencyBtn').style.display = isNew ? 'none' : 'block';
-    
-    // Store the feature IDs for new dependencies
-    if (isNew) {
-        document.getElementById('dependencyModal').dataset.fromId = fromFeatureId;
-        document.getElementById('dependencyModal').dataset.toId = toFeatureId;
-    }
-    
-    document.getElementById('dependencyModal').style.display = 'block';
-}
 
-function saveDependency() {
-    const relationship = document.getElementById('dependencyRelationship').value;
-    const additionalInfo = document.getElementById('dependencyAdditionalInfo').value.trim();
-    
-    if (currentEditingDependency) {
-        // Update existing dependency
-        const depIndex = boardData.dependencies.findIndex(d => 
-            d.from === currentEditingDependency.from && d.to === currentEditingDependency.to
-        );
-        if (depIndex !== -1) {
-            boardData.dependencies[depIndex].relationship = relationship;
-            boardData.dependencies[depIndex].additionalInfo = additionalInfo;
-        }
-    } else {
-        // Create new dependency - get IDs from modal data attributes
-        const modal = document.getElementById('dependencyModal');
-        const fromId = parseInt(modal.dataset.fromId);
-        const toId = parseInt(modal.dataset.toId);
-        
-        if (!fromId || !toId) {
-            console.error('Missing feature IDs for new dependency');
-            return;
-        }
-        
-        const newDependency = {
-            from: fromId,
-            to: toId,
-            relationship,
-            additionalInfo
-        };
-        
-        console.log('Creating new dependency:', newDependency);
-        boardData.dependencies.push(newDependency);
-        
-        // Clear selection
-        if (selectedCardForDependency) {
-            const selectedCard = document.querySelector(`[data-card-id="${selectedCardForDependency}"]`);
-            if (selectedCard) {
-                selectedCard.classList.remove('selected-for-dependency');
-            }
-            selectedCardForDependency = null;
-        }
-    }
-    
-    socket.emit('update-dependencies', boardData.dependencies);
-    drawDependencies();
-    closeDependencyModal();
-}
-
-function deleteDependency() {
-    if (!currentEditingDependency) return;
-    
-    if (confirm('Are you sure you want to delete this dependency?')) {
-        boardData.dependencies = boardData.dependencies.filter(d => 
-            !(d.from === currentEditingDependency.from && d.to === currentEditingDependency.to)
-        );
-        
-        socket.emit('update-dependencies', boardData.dependencies);
-        drawDependencies();
-        closeDependencyModal();
-    }
-}
-
-function closeDependencyModal() {
-    const modal = document.getElementById('dependencyModal');
-    modal.style.display = 'none';
-    
-    // Clear dataset
-    delete modal.dataset.fromId;
-    delete modal.dataset.toId;
-    
-    currentEditingDependency = null;
-}
-
-// Feature Info Display Functions
-function showFeatureInfo(featureId) {
-    const feature = boardData.features.find(f => f.id === featureId);
-    if (!feature) return;
-    
-    const team = boardData.teams.find(t => t.id === feature.team);
-    const sprint = boardData.sprints.find(s => s.id === feature.sprint);
-    
-    document.getElementById('infoFeatureId').textContent = `#${feature.id}`;
-    document.getElementById('infoFeatureTitle').textContent = feature.title;
-    document.getElementById('infoFeatureTeam').textContent = team ? team.name : 'Unknown Team';
-    document.getElementById('infoFeatureSprint').textContent = sprint ? sprint.name : 'Unknown Sprint';
-    document.getElementById('infoFeatureAssignee').textContent = feature.assignee || 'Unassigned';
-    document.getElementById('infoFeatureDescription').textContent = feature.description || 'No description provided';
-    
-    // Store feature ID for edit button
-    document.getElementById('featureInfoModal').dataset.featureId = featureId;
-    
-    document.getElementById('featureInfoModal').style.display = 'block';
-}
-
-function closeFeatureInfoModal() {
-    document.getElementById('featureInfoModal').style.display = 'none';
-    delete document.getElementById('featureInfoModal').dataset.featureId;
-}
-
-function editFeatureFromInfo() {
-    const featureId = parseInt(document.getElementById('featureInfoModal').dataset.featureId);
-    closeFeatureInfoModal();
-    editFeature(featureId);
-}
-
-// Dependency Info Display Functions
-function showDependencyInfo(dependency) {
-    const fromFeature = boardData.features.find(f => f.id === dependency.from);
-    const toFeature = boardData.features.find(f => f.id === dependency.to);
-    
-    if (!fromFeature || !toFeature) return;
-    
-    document.getElementById('infoFromFeature').textContent = `#${fromFeature.id} - ${fromFeature.title}`;
-    document.getElementById('infoToFeature').textContent = `#${toFeature.id} - ${toFeature.title}`;
-    document.getElementById('infoRelationship').textContent = dependency.relationship || 'depends on';
-    document.getElementById('infoAdditionalInfo').textContent = dependency.additionalInfo || 'No additional information provided';
-    
-    // Store dependency info for edit button
-    const modal = document.getElementById('dependencyInfoModal');
-    modal.dataset.fromId = dependency.from;
-    modal.dataset.toId = dependency.to;
-    modal.dataset.relationship = dependency.relationship || 'depends on';
-    modal.dataset.additionalInfo = dependency.additionalInfo || '';
-    
-    modal.style.display = 'block';
-}
-
-function closeDependencyInfoModal() {
-    const modal = document.getElementById('dependencyInfoModal');
-    modal.style.display = 'none';
-    
-    // Clear dataset
-    delete modal.dataset.fromId;
-    delete modal.dataset.toId;
-    delete modal.dataset.relationship;
-    delete modal.dataset.additionalInfo;
-}
-
-function editDependencyFromInfo() {
-    const modal = document.getElementById('dependencyInfoModal');
-    const fromId = parseInt(modal.dataset.fromId);
-    const toId = parseInt(modal.dataset.toId);
-    const relationship = modal.dataset.relationship;
-    const additionalInfo = modal.dataset.additionalInfo;
-    
-    const dependency = { from: fromId, to: toId, relationship, additionalInfo };
-    
-    closeDependencyInfoModal();
-    openDependencyModal(fromId, toId, false, dependency);
-}
