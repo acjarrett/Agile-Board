@@ -651,6 +651,7 @@
             <h1>Agile Board</h1>
             <div class="error-message" id="authError"></div>
             <div class="auth-buttons">
+                <input type="text" id="createCode" class="auth-input" placeholder="Custom Access Code (optional)" maxlength="6">
                 <button class="btn btn-primary btn-large" onclick="createSession()">Create New Session</button>
                 <div style="margin: 20px 0; color: #a0aec0;">OR</div>
                 <input type="text" id="accessCode" class="auth-input" placeholder="Enter Access Code" maxlength="6">
@@ -877,10 +878,19 @@
         // Authentication functions
         async function createSession() {
             try {
+                const customCode = document.getElementById('createCode').value.trim().toUpperCase();
+                
                 const response = await fetch('/api/create-session', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: customCode })
                 });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    showAuthError(error.error);
+                    return;
+                }
                 
                 const data = await response.json();
                 sessionId = data.sessionId;

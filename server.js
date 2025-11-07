@@ -48,18 +48,18 @@ const defaultBoardData = {
     { id: 6, name: 'Iteration 6' }
   ],
   stickies: [
-    { id: 1, title: "User Authentication System", type: "Feature", team: 1, sprint: 1, description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
-    { id: 2, title: "Database Performance Optimization", type: "Feature", team: 1, sprint: 1, description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
-    { id: 3, title: "Mobile App UI Redesign", type: "Feature", team: 2, sprint: 2, description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
-    { id: 4, title: "Payment Gateway Integration", type: "Milestone", team: 1, sprint: 3, description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
-    { id: 5, title: "Automated Testing Suite", type: "Feature", team: 3, sprint: 3, description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
-    { id: 6, title: "CI/CD Pipeline Setup", type: "Milestone", team: 4, sprint: 2, description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
-    { id: 7, title: "Employee Onboarding Portal", type: "Feature", team: 4, sprint: 1, description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
-    { id: 8, title: "Customer Support Chat", type: "Feature", team: 4, sprint: 4, description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
-    { id: 9, title: "Load Testing & Performance", type: "Major Dependency", team: 5, sprint: 4, description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
-    { id: 10, title: "Security Vulnerability Assessment", type: "Major Dependency", team: 3, sprint: 5, description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
-    { id: 11, title: "User Feedback Dashboard", type: "Feature", team: 5, sprint: 3, description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
-    { id: 12, title: "Data Analytics Platform", type: "Feature", team: 1, sprint: 6, description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
+//    { id: 1, title: "User Authentication System", type: "Feature", team: 1, sprint: 1, description: "Implement secure login/logout functionality with session management, password hashing, and multi-factor authentication support." },
+//    { id: 2, title: "Database Performance Optimization", type: "Feature", team: 1, sprint: 1, description: "Optimize database queries, add proper indexing, implement connection pooling, and reduce response times for high-traffic scenarios." },
+//    { id: 3, title: "Mobile App UI Redesign", type: "Feature", team: 2, sprint: 2, description: "Create modern, responsive mobile interface with improved navigation, accessibility features, and consistent design patterns." },
+//    { id: 4, title: "Payment Gateway Integration", type: "Milestone", team: 1, sprint: 3, description: "Integrate multiple payment providers (Stripe, PayPal, etc.) with secure transaction processing, refund handling, and fraud detection." },
+//    { id: 5, title: "Automated Testing Suite", type: "Feature", team: 3, sprint: 3, description: "Build comprehensive test automation framework covering unit tests, integration tests, and end-to-end testing scenarios." },
+//    { id: 6, title: "CI/CD Pipeline Setup", type: "Milestone", team: 4, sprint: 2, description: "Configure automated build, test, and deployment pipeline with staging environments and rollback capabilities." },
+//    { id: 7, title: "Employee Onboarding Portal", type: "Feature", team: 4, sprint: 1, description: "Develop self-service portal for new employee registration, document uploads, and workflow automation for HR processes." },
+//    { id: 8, title: "Customer Support Chat", type: "Feature", team: 4, sprint: 4, description: "Implement real-time chat system with agent routing, chat history, file sharing, and integration with support ticketing system." },
+//    { id: 9, title: "Load Testing & Performance", type: "Major Dependency", team: 5, sprint: 4, description: "Conduct comprehensive load testing to validate system performance under expected traffic volumes and identify bottlenecks." },
+//    { id: 10, title: "Security Vulnerability Assessment", type: "Major Dependency", team: 3, sprint: 5, description: "Perform security audit including penetration testing, code review, and compliance validation for data protection standards." },
+//    { id: 11, title: "User Feedback Dashboard", type: "Feature", team: 5, sprint: 3, description: "Create analytics dashboard to collect, categorize, and visualize user feedback with sentiment analysis and reporting features." },
+//    { id: 12, title: "Data Analytics Platform", type: "Feature", team: 1, sprint: 6, description: "Build real-time data processing and visualization platform with custom dashboards, data export, and business intelligence tools." }
   ],
   dependencies: [
   ],
@@ -173,13 +173,19 @@ const globalActiveUsers = new Set();
 
 // Generate access code
 function generateAccessCode() {
-  const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+  // Generate a code that's 6 characters long, using only uppercase letters and numbers
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
   return code;
 }
 
 // Create new session
-function createSession() {
-  const code = generateAccessCode();
+function createSession(customCode = null) {
+  // Use custom code if provided, otherwise generate one
+  const code = customCode || generateAccessCode();
   const sessionId = uuidv4();
   
   sessionData.sessions[sessionId] = {
@@ -202,7 +208,22 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/create-session', (req, res) => {
-  const session = createSession();
+  const customCode = req.body.code;
+  
+  // Validate custom code if provided
+  if (customCode) {
+    // Check format (alphanumeric, 3-6 chars)
+    if (!/^[A-Z0-9]{3,6}$/.test(customCode)) {
+      return res.status(400).json({ error: 'Access code must be 3-6 alphanumeric characters' });
+    }
+    
+    // Check if code already exists
+    if (sessionData.activeCodes.includes(customCode)) {
+      return res.status(400).json({ error: 'Access code already in use' });
+    }
+  }
+  
+  const session = createSession(customCode);
   res.json(session);
 });
 
