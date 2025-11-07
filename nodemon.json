@@ -1,0 +1,11 @@
+{
+  "ignore": [
+    "data/*",
+    "data/sessions.json",
+    "data/board-data.json"
+  ],
+  "watch": [
+    "server.js",
+    "public/"
+  ]
+}
