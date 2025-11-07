@@ -17,8 +17,7 @@
     "default": "images/icon.png"
   },
   "files": [
-    { "path": "my-board.html", "addressable": true },
-    { "path": "sdk/azure-devops-extension-sdk.js", "addressable": true }
+    { "path": "my-board.html", "addressable": true }
   ],
   "contributions": [
     {
