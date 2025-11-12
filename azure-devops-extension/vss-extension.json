@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "agile-board-extension",
   "publisher": "TTCUTech",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "name": "Agile Board",
   "description": "SAFe PI Planning Board",
   "public": false,
@@ -17,7 +17,8 @@
     "default": "images/icon.png"
   },
   "files": [
-    { "path": "my-board.html", "addressable": true }
+    { "path": "my-board.html", "addressable": true },
+    { "path": "dist/my-board.js", "addressable": true }
   ],
   "contributions": [
     {

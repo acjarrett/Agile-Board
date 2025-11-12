@@ -3,34 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Agile Planning Hub</title>
-  <script src="https://dev.azure.com/TTCU/_content/FrameworkScripts/VSS.SDK.min.js"></script>
   <style>body,html{margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif;background:#0f1622;color:#e2e8f0;height:100vh;}</style>
 </head>
 <body>
   <div id="loading">Loading Agile Board...</div>
   <iframe id="agileBoardFrame" style="display:none;border:0;width:100%;height:100%;"></iframe>
-  <script>
-    // Initialize Azure DevOps extension context
-    AzureDevOpsSDK = window.AzureDevOpsSDK || window.SDK;
-    AzureDevOpsSDK && AzureDevOpsSDK.init();
-    AzureDevOpsSDK && AzureDevOpsSDK.ready().then(async () => {
-      const context = await AzureDevOpsSDK.getConfiguration();
-      // Pass project/team context into embedded board app via URL params
-      const project = context.project?.name || '';
-      const team = context.team?.name || '';
-      const frame = document.getElementById('appFrame');
-      // Assuming you will host your existing board app separately (e.g. Azure App Service)
-      const baseUrl = 'https://agile-board-amct.onrender.com';
-      frame.src = baseUrl + '/?project=' + encodeURIComponent(project) + '&team=' + encodeURIComponent(team);
-      frame.onload = () => {
-        document.getElementById('loading').style.display='none';
-        frame.style.display='block';
-      };
-      AzureDevOpsSDK.notifyLoadSucceeded();
-    }).catch(err => {
-      console.error('Extension init error', err);
-      AzureDevOpsSDK && AzureDevOpsSDK.notifyLoadFailed(err.message || 'Load failed');
-    });
-  </script>
+  <!-- Bundled script (includes azure-devops-extension-sdk and our logic) -->
+  <script src="dist/my-board.js"></script>
 </body>
 </html>

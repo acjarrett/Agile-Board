@@ -326,8 +326,15 @@ function drawDependencies() {
 
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
-            const controlPoint1X = x1 - Math.abs(x2 - x1) * -0.3;
-            const controlPoint2X = x2 + Math.abs(x2 - x1) * -0.3;
+            // Calculate control points based on direction to make curve consistent
+            const dx = x2 - x1;
+            const distance = Math.abs(dx);
+            const offset = distance * 0.3;
+            
+            // If going right (x2 > x1), push control points outward to the right
+            // If going left (x2 < x1), push control points outward to the left
+            const controlPoint1X = x1 + (dx > 0 ? offset : -offset);
+            const controlPoint2X = x2 + (dx > 0 ? -offset : offset);
 
             path.setAttribute('d', `M ${x1} ${y1} C ${controlPoint1X} ${y1}, ${controlPoint2X} ${y2}, ${x2} ${y2}`);
             path.setAttribute('stroke', '#dc2626');
@@ -460,8 +467,14 @@ function handleDependencyClick(stickyId, event, dotType) {
         svg.appendChild(tempPath);
 
         const mousePt = clientToSvg(ev.clientX, ev.clientY);
-        const controlPoint1X = startPt.x - Math.abs(mousePt.x - startPt.x) * 0.3;
-        const controlPoint2X = mousePt.x + Math.abs(mousePt.x - startPt.x) * 0.3;
+        
+        // Calculate control points based on direction (same logic as final render)
+        const dx = mousePt.x - startPt.x;
+        const distance = Math.abs(dx);
+        const offset = distance * 0.3;
+        const controlPoint1X = startPt.x + (dx > 0 ? offset : -offset);
+        const controlPoint2X = mousePt.x + (dx > 0 ? -offset : offset);
+        
         tempPath.setAttribute('d', `M ${startPt.x} ${startPt.y} C ${controlPoint1X} ${startPt.y}, ${controlPoint2X} ${mousePt.y}, ${mousePt.x} ${mousePt.y}`);
     }
 
@@ -474,9 +487,13 @@ function handleDependencyClick(stickyId, event, dotType) {
         const mouseClientY = ev.clientY;
         const mousePt = clientToSvg(mouseClientX, mouseClientY);
 
-        // Update temp path in SVG coordinates
-        const controlPoint1X = startPt.x - Math.abs(mousePt.x - startPt.x) * 0.3;
-        const controlPoint2X = mousePt.x + Math.abs(mousePt.x - startPt.x) * 0.3;
+        // Update temp path in SVG coordinates (same direction-aware logic)
+        const dx = mousePt.x - startPt.x;
+        const distance = Math.abs(dx);
+        const offset = distance * 0.3;
+        const controlPoint1X = startPt.x + (dx > 0 ? offset : -offset);
+        const controlPoint2X = mousePt.x + (dx > 0 ? -offset : offset);
+        
         tempPath.setAttribute('d', `M ${startPt.x} ${startPt.y} C ${controlPoint1X} ${startPt.y}, ${controlPoint2X} ${mousePt.y}, ${mousePt.x} ${mousePt.y}`);
 
         // Highlight potential target dots using client coordinates
@@ -540,25 +557,30 @@ function handleDependencyClick(stickyId, event, dotType) {
             // Determine dot types
             const targetDotType = targetDot.classList.contains('start') ? 'start' : 'end';
 
-            // Prevent duplicate connections (exact match or mirrored exact match)
-            const existsExact = boardData.dependencies.some(d =>
-                d.from === stickyId && d.to === targetId && (d.fromDot || 'start') === dotType && (d.toDot || 'end') === targetDotType
-            );
-            const existsMirrored = boardData.dependencies.some(d =>
-                d.from === targetId && d.to === stickyId && (d.fromDot || 'start') === targetDotType && (d.toDot || 'end') === dotType
+            const fromId = String(stickyId);
+            const toId = String(targetId);
+
+            // Prevent duplicate connections between the same two cards regardless of dot orientation
+            const existsAnyPair = boardData.dependencies.some(d =>
+                (String(d.from) === fromId && String(d.to) === toId) || 
+                (String(d.from) === toId && String(d.to) === fromId)
             );
 
-            if (!existsExact && !existsMirrored) {
-                const newDependency = {
-                    from: stickyId,
-                    to: targetId,
-                    fromDot: dotType,
-                    toDot: targetDotType
-                };
-                boardData.dependencies.push(newDependency);
-                    socket.emit('update-dependencies', { sessionId, dependencies: boardData.dependencies });
-                drawDependencies();
+            if (existsAnyPair) {
+                // Block immediately if any dependency exists between these two cards
+                return;
             }
+
+            // Create new dependency
+            const newDependency = {
+                from: stickyId,
+                to: targetId,
+                fromDot: dotType,
+                toDot: targetDotType
+            };
+            boardData.dependencies.push(newDependency);
+            socket.emit('update-dependencies', { sessionId, dependencies: boardData.dependencies });
+            drawDependencies();
         }
     }
 

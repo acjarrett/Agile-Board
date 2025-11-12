@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "cp node_modules/azure-devops-extension-sdk/dist/azure-devops-extension-sdk.js sdk/",
+    "build": "esbuild src/my-board.js --bundle --platform=browser --format=iife --outfile=dist/my-board.js",
     "package": "tfx extension create --manifest-globs vss-extension.json --rev-version",
     "publish": "tfx extension publish --manifest-globs vss-extension.json --publisher your-publisher-id --auth-type pat --token $TOKEN"
   },
   "devDependencies": {
-    "azure-devops-extension-sdk": "^3.0.0",
+    "azure-devops-extension-sdk": "^4.2.0",
+    "esbuild": "^0.24.0",
     "tfx-cli": "^0.12.0"
   }
 }
